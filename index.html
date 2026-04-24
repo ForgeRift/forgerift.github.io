@@ -200,18 +200,18 @@
 <div class="hero wrap">
   <h1>Give Claude a real terminal — without giving Claude the keys.</h1>
   <p class="sub">
-    ForgeRift ships open-source MCP plugins that let Claude drive your Windows machine and your Linux VPS through structured, audited tools. No shells, no credential juggling, no &quot;just paste this into your terminal.&quot; Every call is checked against a three-tier security model, and every decision is logged.
+    ForgeRift ships source-available MCP plugins that let Claude drive your Windows machine and your Linux VPS through structured, audited tools. No shells, no credential juggling, no &quot;just paste this into your terminal.&quot; Every call is checked against a three-tier security model, and every decision is logged.
   </p>
   <div class="badges">
-    <span class="badge">Open source (MIT)</span>
-    <span class="badge">Audited — 48+ adversarial findings closed</span>
+    <span class="badge">Source available (BUSL 1.1)</span>
+    <span class="badge">Audited — 80+ adversarial findings closed</span>
     <span class="badge green">GREEN allowlist</span>
     <span class="badge amber">AMBER dry-run gate</span>
-    <span class="badge red">RED hard-block (220+ patterns)</span>
+    <span class="badge red">RED hard-block (725+ combined patterns)</span>
   </div>
   <div class="cta">
     <a class="btn primary" href="#plugins">See the plugins</a>
-    <a class="btn" href="https://github.com/forgerift">View source on GitHub</a>
+    <a class="btn" href="https://github.com/ForgeRift">View source on GitHub</a>
   </div>
 </div>
 
@@ -227,7 +227,7 @@
         <ul>
           <li><strong>8 structured tools</strong> — file listing, read, search, git, npm, system info, escape hatch.</li>
           <li><strong>Runs as a Windows Service</strong> via NSSM, bound strictly to <code>127.0.0.1</code>.</li>
-          <li><strong>150+ RED patterns</strong> block deletion, shutdown, code exec, exfiltration, credential access, persistence.</li>
+          <li><strong>450+ RED patterns</strong> across 27 categories block deletion, shutdown, code exec, exfiltration, credential access, persistence.</li>
           <li><strong>Sensitive files protected</strong> — <code>.env</code>, <code>.ssh</code>, credential stores blocked even from read tools.</li>
         </ul>
         <a class="btn" href="https://github.com/forgerift/local-terminal-mcp">Repo &amp; install →</a>
@@ -240,7 +240,7 @@
         <ul>
           <li><strong>15 structured tools</strong> — PM2 status, deploy pipeline, git, log tail, file reads, system health.</li>
           <li><strong>OAuth 2.0 + bearer token</strong>, TLS via sslip.io + Let's Encrypt out of the box.</li>
-          <li><strong>100+ RED patterns</strong> block deletion, reboot, shell invocation, DB writes, package install, privilege escalation.</li>
+          <li><strong>275+ RED patterns</strong> across 26 categories block deletion, reboot, shell invocation, DB writes, package install, privilege escalation.</li>
           <li><strong>Symlink realpath check</strong> and path allowlist keep file reads inside declared directories.</li>
         </ul>
         <a class="btn" href="https://github.com/forgerift/vps-control-mcp">Repo &amp; install →</a>
@@ -296,17 +296,17 @@
   <div class="wrap">
     <h2>Pricing</h2>
     <p style="color:var(--fg-muted); max-width: 720px;">
-      Both plugins are <strong>free during launch</strong> while we validate behavior at scale. When paid tiers activate, existing users get <strong>30 days' written notice</strong> before any charge. Free, read-only access to the GREEN tools stays free indefinitely.
+      All plans include a <strong>14-day free trial</strong> — no charge during the trial period. No refunds after trial ends.
     </p>
     <div class="pricing" style="margin-top: 20px;">
       <div class="price">
-        <div class="tier-name">Free</div>
-        <div class="amt">$0</div>
-        <div class="per">always</div>
+        <div class="tier-name">Individual</div>
+        <div class="amt">$14.99</div>
+        <div class="per">per month · one plugin</div>
         <ul>
-          <li>Read-only tools on both plugins</li>
-          <li>Full audit log</li>
-          <li>Community GitHub issues</li>
+          <li>All tools for your chosen plugin</li>
+          <li>Email support, 1 business day</li>
+          <li>Or $149/yr (save ~17%)</li>
         </ul>
       </div>
       <div class="price featured">
@@ -317,21 +317,22 @@
           <li>All local-terminal tools</li>
           <li>All vps-control tools</li>
           <li>Email support, 1 business day</li>
-          <li>20% off vs. buying separately</li>
+          <li>Or $199/yr (save ~17%)</li>
         </ul>
       </div>
       <div class="price">
-        <div class="tier-name">Individual</div>
-        <div class="amt">$14.99</div>
-        <div class="per">per month · one plugin</div>
+        <div class="tier-name">Founder Cohort</div>
+        <div class="amt">$9.99</div>
+        <div class="per">per month · locked for life</div>
         <ul>
-          <li>All tools for your chosen plugin</li>
-          <li>Email support, 1 business day</li>
+          <li>Individual plugin at $9.99/mo locked</li>
+          <li>Bundle at $14.99/mo locked</li>
+          <li>First 100 subscribers or 3 months post-launch — whichever comes first</li>
         </ul>
       </div>
     </div>
     <div class="note">
-      No trial gate during launch — everything is unlocked today. See the <a href="/terms.html">Terms of Service</a> and <a href="/privacy.html">Privacy Policy</a> for the details we have to spell out.
+      Founder Cohort pricing is locked as long as your subscription stays active. See the <a href="/terms.html">Terms of Service</a> and <a href="/privacy.html">Privacy Policy</a> for the full details.
     </div>
   </div>
 </section>
@@ -341,7 +342,7 @@
 <footer>
   <div class="wrap">
     <div>
-      &copy; 2026 ForgeRift LLC · Wisconsin, USA ·
+      &copy; 2026 ForgeRift LLC · 5821 W Mineral St, West Allis, WI 53214 ·
       <a href="mailto:support@forgerift.io">support@forgerift.io</a>
     </div>
     <div>
