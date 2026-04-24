@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ForgeRift — audited infrastructure tools for Claude</title>
+<meta name="description" content="Open-source MCP plugins that give Claude structured, audited access to your Windows machine and your Linux VPS. Three-tier security, no shells, every call logged.">
+<meta name="theme-color" content="#0f1115">
+
+<meta property="og:title" content="ForgeRift — audited infrastructure tools for Claude">
+<meta property="og:description" content="Open-source MCP plugins that give Claude structured, audited access to your Windows machine and your Linux VPS.">
+<meta property="og:url" content="https://forgerift.io">
+<meta property="og:type" content="website">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314b8a6'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='700' font-size='28' fill='%230f1115'%3EFR%3C/text%3E%3C/svg%3E">
+
+<style>
+  :root {
+    --bg: #0f1115;
+    --bg-2: #151922;
+    --fg: #e8ecf3;
+    --fg-muted: #9aa3b2;
+    --accent: #14b8a6;
+    --accent-dim: #0f766e;
+    --border: #262b36;
+    --red: #f87171;
+    --amber: #fbbf24;
+    --green: #4ade80;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+  }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--fg); font-size: 1.1rem; }
+  .brand-mark {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--accent); color: var(--bg);
+    display: grid; place-items: center; font-size: 0.85rem;
+  }
+  nav a { color: var(--fg-muted); margin-left: 20px; font-size: 0.95rem; }
+  nav a:hover { color: var(--fg); text-decoration: none; }
+
+  .hero { padding: 72px 0 56px; }
+  .hero h1 {
+    font-size: clamp(2rem, 4.5vw, 3.1rem);
+    line-height: 1.15;
+    margin: 0 0 18px;
+    letter-spacing: -0.02em;
+  }
+  .hero .sub {
+    font-size: 1.15rem;
+    color: var(--fg-muted);
+    max-width: 720px;
+    margin: 0 0 28px;
+  }
+  .badges {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px;
+  }
+  .badge {
+    font-size: 0.82rem;
+    padding: 5px 11px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--fg-muted);
+    background: var(--bg-2);
+  }
+  .badge.green { color: var(--green); border-color: rgba(74,222,128,0.25); }
+  .badge.amber { color: var(--amber); border-color: rgba(251,191,36,0.3); }
+  .badge.red   { color: var(--red);   border-color: rgba(248,113,113,0.3); }
+
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    background: var(--bg-2);
+  }
+  .btn:hover { border-color: var(--accent); text-decoration: none; }
+  .btn.primary {
+    background: var(--accent);
+    color: var(--bg);
+    border-color: var(--accent);
+  }
+  .btn.primary:hover { background: var(--accent-dim); border-color: var(--accent-dim); }
+
+  section { padding: 48px 0; border-top: 1px solid var(--border); }
+  section h2 {
+    font-size: 1.6rem;
+    margin: 0 0 22px;
+    letter-spacing: -0.01em;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+  }
+  .card h3 { margin: 0 0 6px; font-size: 1.15rem; }
+  .card .kicker { color: var(--fg-muted); font-size: 0.9rem; margin-bottom: 14px; }
+  .card ul { margin: 10px 0 16px; padding-left: 18px; }
+  .card li { margin-bottom: 5px; color: var(--fg-muted); }
+  .card li strong { color: var(--fg); font-weight: 600; }
+  .card .platform { font-size: 0.82rem; color: var(--fg-muted); margin-bottom: 10px; }
+
+  .tier-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  @media (max-width: 720px) { .tier-row { grid-template-columns: 1fr; } }
+  .tier {
+    padding: 16px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--bg-2);
+  }
+  .tier h4 { margin: 0 0 8px; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot.red { background: var(--red); }
+  .dot.amber { background: var(--amber); }
+  .dot.green { background: var(--green); }
+  .tier p { color: var(--fg-muted); margin: 0; font-size: 0.92rem; }
+
+  .pricing { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .pricing { grid-template-columns: 1fr; } }
+  .price {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    background: var(--bg-2);
+    text-align: center;
+  }
+  .price.featured { border-color: var(--accent); }
+  .price .tier-name { color: var(--fg-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .price .amt { font-size: 2.2rem; font-weight: 700; margin: 8px 0 4px; letter-spacing: -0.02em; }
+  .price .per { color: var(--fg-muted); font-size: 0.9rem; }
+  .price ul { text-align: left; list-style: none; padding: 0; margin: 16px 0 0; }
+  .price li { color: var(--fg-muted); padding: 4px 0; font-size: 0.92rem; }
+
+  .note {
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+    background: var(--bg-2);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-top: 22px;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 0 48px;
+    color: var(--fg-muted);
+    font-size: 0.88rem;
+  }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 24px; justify-content: space-between; }
+  footer a { color: var(--fg-muted); }
+  footer a:hover { color: var(--fg); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand">
+      <span class="brand-mark">FR</span>
+      ForgeRift
+    </div>
+    <nav>
+      <a href="#plugins">Plugins</a>
+      <a href="#demo">Demo</a>
+      <a href="#security">Security</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://github.com/forgerift">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<div class="hero wrap">
+  <h1>Give Claude a real terminal — without giving Claude the keys.</h1>
+  <p class="sub">
+    ForgeRift ships open-source MCP plugins that let Claude drive your Windows machine and your Linux VPS through structured, audited tools. No shells, no credential juggling, no &quot;just paste this into your terminal.&quot; Every call is checked against a three-tier security model, and every decision is logged.
+  </p>
+  <div class="badges">
+    <span class="badge">Open source (MIT)</span>
+    <span class="badge">Audited — 48+ adversarial findings closed</span>
+    <span class="badge green">GREEN allowlist</span>
+    <span class="badge amber">AMBER dry-run gate</span>
+    <span class="badge red">RED hard-block (220+ patterns)</span>
+  </div>
+  <div class="cta">
+    <a class="btn primary" href="#plugins">See the plugins</a>
+    <a class="btn" href="https://github.com/forgerift">View source on GitHub</a>
+  </div>
+</div>
+
+<section id="plugins">
+  <div class="wrap">
+    <h2>Two plugins, one trust model</h2>
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="platform">Windows 10 / 11 · Claude Desktop + Cowork</div>
+        <h3>local-terminal</h3>
+        <div class="kicker">Audited access to a local Windows machine, localhost-only.</div>
+        <ul>
+          <li><strong>8 structured tools</strong> — file listing, read, search, git, npm, system info, escape hatch.</li>
+          <li><strong>Runs as a Windows Service</strong> via NSSM, bound strictly to <code>127.0.0.1</code>.</li>
+          <li><strong>150+ RED patterns</strong> block deletion, shutdown, code exec, exfiltration, credential access, persistence.</li>
+          <li><strong>Sensitive files protected</strong> — <code>.env</code>, <code>.ssh</code>, credential stores blocked even from read tools.</li>
+        </ul>
+        <a class="btn" href="https://github.com/forgerift/local-terminal-mcp">Repo &amp; install →</a>
+      </div>
+
+      <div class="card">
+        <div class="platform">Ubuntu 20.04+ / Debian 11+ · Claude Desktop + Cowork</div>
+        <h3>vps-control</h3>
+        <div class="kicker">Audited access to a Linux VPS you already run.</div>
+        <ul>
+          <li><strong>15 structured tools</strong> — PM2 status, deploy pipeline, git, log tail, file reads, system health.</li>
+          <li><strong>OAuth 2.0 + bearer token</strong>, TLS via sslip.io + Let's Encrypt out of the box.</li>
+          <li><strong>100+ RED patterns</strong> block deletion, reboot, shell invocation, DB writes, package install, privilege escalation.</li>
+          <li><strong>Symlink realpath check</strong> and path allowlist keep file reads inside declared directories.</li>
+        </ul>
+        <a class="btn" href="https://github.com/forgerift/vps-control-mcp">Repo &amp; install →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap">
+    <h2>See it in action</h2>
+    <div class="grid-2" style="margin-top: 8px;">
+      <div>
+        <p style="color:var(--fg-muted); font-size:0.95rem; margin-bottom: 12px;"><strong style="color:var(--fg);">local-terminal</strong> — RED-tier block intercepting a dangerous command before it reaches the shell.</p>
+        <img src="media/local-terminal_04_red-block.gif" alt="local-terminal RED-tier block demo" style="width:100%; border-radius:10px; border:1px solid var(--border);">
+      </div>
+      <div>
+        <p style="color:var(--fg-muted); font-size:0.95rem; margin-bottom: 12px;"><strong style="color:var(--fg);">vps-control</strong> — full deploy pipeline: git pull → build → PM2 restart, driven by Claude.</p>
+        <img src="media/vps-control_03_deploy.gif" alt="vps-control deploy pipeline demo" style="width:100%; border-radius:10px; border:1px solid var(--border);">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="security">
+  <div class="wrap">
+    <h2>How we keep Claude from doing the wrong thing</h2>
+    <p style="color:var(--fg-muted); max-width: 720px;">
+      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. No shell is invoked. No single tool bypasses the check. Audit logs go to disk with token and secret redaction.
+    </p>
+    <div class="tier-row" style="margin-top: 18px;">
+      <div class="tier">
+        <h4><span class="dot red"></span>RED — hard-blocked</h4>
+        <p>File deletion, shutdown, code exec via PowerShell/bash -c, curl/wget/scp/ssh, database writes, privilege escalation, Unicode homoglyphs, newline injection. No override, no flag, no escape.</p>
+      </div>
+      <div class="tier">
+        <h4><span class="dot amber"></span>AMBER — dry-run gate</h4>
+        <p>Bulk copies, <code>find -exec</code>, wildcard renames, package updates. First call forces <code>dry_run=true</code> with a visible warning; a second explicit call is required to execute.</p>
+      </div>
+      <div class="tier">
+        <h4><span class="dot green"></span>GREEN — allowed &amp; logged</h4>
+        <p>Everything else. Rate-limited, timeout-capped, redacted audit log, and a hard cap on the escape-hatch tool. The boring tier by design.</p>
+      </div>
+    </div>
+    <div class="note">
+      <strong>Honest disclosure.</strong> LLMs follow instructions probabilistically. Claude occasionally still suggests &quot;paste this into your terminal&quot; despite the plugin being installed. We treat every instance as a defect, ship mitigations every release, and publish the open issue tracker.
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <h2>Pricing</h2>
+    <p style="color:var(--fg-muted); max-width: 720px;">
+      Both plugins are <strong>free during launch</strong> while we validate behavior at scale. When paid tiers activate, existing users get <strong>30 days' written notice</strong> before any charge. Free, read-only access to the GREEN tools stays free indefinitely.
+    </p>
+    <div class="pricing" style="margin-top: 20px;">
+      <div class="price">
+        <div class="tier-name">Free</div>
+        <div class="amt">$0</div>
+        <div class="per">always</div>
+        <ul>
+          <li>Read-only tools on both plugins</li>
+          <li>Full audit log</li>
+          <li>Community GitHub issues</li>
+        </ul>
+      </div>
+      <div class="price featured">
+        <div class="tier-name">Bundle (best value)</div>
+        <div class="amt">$19.99</div>
+        <div class="per">per month · both plugins</div>
+        <ul>
+          <li>All local-terminal tools</li>
+          <li>All vps-control tools</li>
+          <li>Email support, 1 business day</li>
+          <li>20% off vs. buying separately</li>
+        </ul>
+      </div>
+      <div class="price">
+        <div class="tier-name">Individual</div>
+        <div class="amt">$14.99</div>
+        <div class="per">per month · one plugin</div>
+        <ul>
+          <li>All tools for your chosen plugin</li>
+          <li>Email support, 1 business day</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">
+      No trial gate during launch — everything is unlocked today. See the <a href="/terms.html">Terms of Service</a> and <a href="/privacy.html">Privacy Policy</a> for the details we have to spell out.
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      &copy; 2026 ForgeRift LLC · Wisconsin, USA ·
+      <a href="mailto:support@forgerift.io">support@forgerift.io</a>
+    </div>
+    <div>
+      <a href="https://github.com/forgerift">GitHub</a> ·
+      <a href="https://github.com/forgerift/local-terminal-mcp">local-terminal</a> ·
+      <a href="https://github.com/forgerift/vps-control-mcp">vps-control</a> ·
+      <a href="/terms.html">Terms</a> ·
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
