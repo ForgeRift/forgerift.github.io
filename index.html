@@ -200,7 +200,7 @@
 <div class="hero wrap">
   <h1>Give Claude a real terminal — without giving Claude the keys.</h1>
   <p class="sub">
-    ForgeRift ships source-available MCP plugins that let Claude drive your Windows machine and your Linux VPS through structured, audited tools. No shells, no credential juggling, no &quot;just paste this into your terminal.&quot; Every call is checked against a three-tier security model, and every decision is logged.
+    ForgeRift ships source-available MCP plugins that let Claude drive your Windows machine and your Linux VPS through structured, audited tools. For most operations — reading files, checking logs, running builds, deploying, diagnosing errors — Claude handles it directly, no copy-pasting required. A defined set of high-risk operations are permanently blocked and will always require a manual terminal step. Every call is checked against a three-tier security model, and every decision is logged.
   </p>
   <div class="badges">
     <span class="badge">Source available (BUSL 1.1)</span>
@@ -287,7 +287,7 @@
       </div>
     </div>
     <div class="note">
-      <strong>Honest disclosure.</strong> LLMs follow instructions probabilistically. Claude occasionally still suggests &quot;paste this into your terminal&quot; despite the plugin being installed. We treat every instance as a defect, ship mitigations every release, and publish the open issue tracker.
+      <strong>Honest disclosure.</strong> These plugins significantly reduce — but do not eliminate — the need for manual terminal work. By design, a defined set of high-risk operations (file deletion, firewall changes, package removal, credential access, and others) are permanently blocked and will always require you to run them yourself. When Claude hits one of those, it tells you exactly what to run and why. For everything else — reads, logs, builds, deploys, diagnostics — Claude handles it without your intervention. Additionally, LLMs follow instructions probabilistically: Claude may occasionally suggest &quot;paste this into your terminal&quot; even when the plugin is active. We treat every such instance as a defect and ship mitigations each release.
     </div>
   </div>
 </section>
