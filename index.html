@@ -151,10 +151,14 @@
   }
   .price.featured { border-color: var(--accent); }
   .price .tier-name { color: var(--fg-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
-  .price .amt { font-size: 2.2rem; font-weight: 700; margin: 8px 0 4px; letter-spacing: -0.02em; }
+  .price .amt { font-size: 2.2rem; font-weight: 700; margin: 8px 0 2px; letter-spacing: -0.02em; }
   .price .per { color: var(--fg-muted); font-size: 0.9rem; }
+  .price .annual { color: var(--accent); font-size: 0.88rem; margin: 5px 0 0; }
+  .price .annual span { text-decoration: line-through; color: var(--fg-muted); margin-right: 4px; }
   .price ul { text-align: left; list-style: none; padding: 0; margin: 16px 0 0; }
   .price li { color: var(--fg-muted); padding: 4px 0; font-size: 0.92rem; }
+  .price .lock-warning { font-size: 0.83rem; background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.35); border-radius: 6px; padding: 8px 12px; margin: 14px 0 0; text-align: left; color: var(--fg-muted); line-height: 1.45; }
+  .price .lock-warning strong { color: #fbbf24; }
 
   .note {
     font-size: 0.9rem;
@@ -303,10 +307,10 @@
         <div class="tier-name">Individual</div>
         <div class="amt">$14.99</div>
         <div class="per">per month · one plugin</div>
+        <div class="annual">or <strong>$149 / yr</strong> &mdash; save $31 &nbsp;<span>($179.88)</span></div>
         <ul>
           <li>All tools for your chosen plugin</li>
           <li>Email support, 1 business day</li>
-          <li>Or $149/yr (save ~17%)</li>
         </ul>
         <div class="cta" style="margin-top: 18px; justify-content: center; gap: 8px; flex-wrap: wrap;">
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=vps-monthly">Try vps-control free</a>
@@ -317,11 +321,11 @@
         <div class="tier-name">Bundle (best value)</div>
         <div class="amt">$19.99</div>
         <div class="per">per month · both plugins</div>
+        <div class="annual">or <strong>$199 / yr</strong> &mdash; save $41 &nbsp;<span>($239.88)</span></div>
         <ul>
           <li>All local-terminal tools</li>
           <li>All vps-control tools</li>
           <li>Email support, 1 business day</li>
-          <li>Or $199/yr (save ~17%)</li>
         </ul>
         <div class="cta" style="margin-top: 18px; justify-content: center;">
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=bundle-monthly">Try the Bundle free</a>
@@ -330,12 +334,15 @@
       <div class="price">
         <div class="tier-name">Founder Cohort</div>
         <div class="amt">$9.99</div>
-        <div class="per">per month · locked for life</div>
+        <div class="per">per month · Individual &nbsp;/&nbsp; $14.99 · Bundle</div>
         <ul>
-          <li>Individual plugin at $9.99/mo locked</li>
-          <li>Bundle at $14.99/mo locked</li>
+          <li>Individual plugin — $9.99/mo locked for life</li>
+          <li>Bundle — $14.99/mo locked for life</li>
           <li>First 100 subscribers or 3 months post-launch — whichever comes first</li>
         </ul>
+        <div class="lock-warning">
+          <strong>⚠ Rate lock requires an active subscription.</strong> Canceling permanently forfeits your Founder price — it cannot be reclaimed after lapse.
+        </div>
         <div class="cta" style="margin-top: 18px; justify-content: center; gap: 8px; flex-wrap: wrap;">
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=vps-founder-monthly">Claim vps-control Founder</a>
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=lt-founder-monthly">Claim local-terminal Founder</a>
@@ -344,7 +351,7 @@
       </div>
     </div>
     <div class="note">
-      Founder Cohort pricing is locked as long as your subscription stays active. See the <a href="/terms.html">Terms of Service</a> and <a href="/privacy.html">Privacy Policy</a> for the full details.
+      Founder Cohort pricing is locked for the life of your subscription. Canceling permanently forfeits the Founder rate — reactivating after lapse restores access at the then-current price. See the <a href="/terms.html">Terms of Service</a> for full details.
     </div>
   </div>
 </section>
