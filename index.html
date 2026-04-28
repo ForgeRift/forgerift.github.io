@@ -1,13 +1,13 @@
-Ôªø<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ForgeRift ‚Äî audited infrastructure tools for Claude</title>
+<title>ForgeRift ó audited infrastructure tools for Claude</title>
 <meta name="description" content="Open-source MCP plugins that give Claude structured, audited access to your Windows machine and your Linux VPS. Three-tier security, no shells, every call logged.">
 <meta name="theme-color" content="#0f1115">
 
-<meta property="og:title" content="ForgeRift ‚Äî audited infrastructure tools for Claude">
+<meta property="og:title" content="ForgeRift ó audited infrastructure tools for Claude">
 <meta property="og:description" content="Open-source MCP plugins that give Claude structured, audited access to your Windows machine and your Linux VPS.">
 <meta property="og:url" content="https://forgerift.io">
 <meta property="og:type" content="website">
@@ -199,7 +199,7 @@
       <a href="#demo">Demo</a>
       <a href="#security">Security</a>
       <a href="#pricing">Pricing</a>
-      <a href="https://github.com/forgerift">GitHub</a>
+      <a href="https://github.com/ForgeRift">GitHub</a>
     </nav>
   </div>
 </header>
@@ -207,16 +207,16 @@
 <main>
 
 <div class="hero wrap">
-  <h1>Give Claude a real terminal ‚Äî without giving Claude the keys.</h1>
+  <h1>Give Claude a real terminal ó without giving Claude the keys.</h1>
   <p class="sub">
-    We run the safe tasks automatically so you don't have to. Reading files, checking logs, running builds, deploying, diagnosing errors ‚Äî Claude handles those directly, no copy-pasting required. High-risk operations stay permanently blocked and in your hands by design. Every call is checked against a three-tier security model, and every decision is logged.
+    We run the safe tasks automatically so you don't have to. Reading files, checking logs, running builds, deploying, diagnosing errors ó Claude handles those directly, no copy-pasting required. High-risk operations stay permanently blocked and in your hands by design. Every call is checked against a three-tier security model, and every decision is logged.
   </p>
   <div class="badges">
     <span class="badge">Open source (MIT)</span>
-    <span class="badge">Audited ¬∑ 80+ adversarial findings closed</span>
+    <span class="badge">Audited ∑ 80+ adversarial findings closed</span>
     <span class="badge green">GREEN allowlist</span>
     <span class="badge amber">AMBER dry-run gate</span>
-    <span class="badge red">RED hard-block (256+ patterns across both plugins)</span>
+    <span class="badge red">RED hard-block (140+ patterns, local-terminal)</span>
   </div>
   <div class="cta">
     <a class="btn primary" href="#plugins">See the plugins</a>
@@ -230,29 +230,29 @@
     <div class="grid-2">
 
       <div class="card">
-        <div class="platform">Windows 10 / 11 ¬∑ Claude Desktop + Cowork</div>
+        <div class="platform">Windows 10 / 11 ∑ Claude Desktop + Cowork</div>
         <h3>local-terminal</h3>
         <div class="kicker">Audited access to your local Windows machine. No network port &mdash; runs in-process via Claude Desktop.</div>
         <ul>
-          <li><strong>8 structured tools</strong> ‚Äî file listing, read, search, git, npm, system info, escape hatch.</li>
-          <li><strong>.mcpb extension</strong> ‚Äî installs directly into Claude Desktop. No Windows Service or configuration files required.</li>
+          <li><strong>8 structured tools</strong> ó file listing, read, search, git, npm, system info, escape hatch.</li>
+          <li><strong>.mcpb extension</strong> ó installs directly into Claude Desktop. No Windows Service or configuration files required.</li>
           <li><strong>140+ RED patterns</strong> across 27 categories block deletion, shutdown, code exec, exfiltration, credential access, persistence.</li>
-          <li><strong>Sensitive files protected</strong> ‚Äî <code>.env</code>, <code>.ssh</code>, credential stores blocked even from read tools.</li>
+          <li><strong>Sensitive files protected</strong> ó <code>.env</code>, <code>.ssh</code>, credential stores blocked even from read tools.</li>
         </ul>
-        <a class="btn" href="https://github.com/forgerift/local-terminal-mcp">Repo &amp; install ‚Üí</a>
+        <a class="btn" href="https://github.com/ForgeRift/local-terminal-mcp">Repo &amp; install ?</a>
       </div>
 
       <div class="card">
-        <div class="platform">Ubuntu 20.04+ / Debian 11+ ‚Äî Claude Desktop + Cowork</div>
+        <div class="platform">Ubuntu 20.04+ / Debian 11+ ó Claude Desktop + Cowork</div>
         <h3>vps-control</h3>
         <div class="kicker">Audited access to a Linux VPS you already run.</div>
         <ul>
-          <li><strong>17 structured tools</strong> ‚Üí PM2 status, deploy pipeline, git, stdout &amp; error logs, file reads, system health, audit log.</li>
+          <li><strong>17 structured tools</strong> ? PM2 status, deploy pipeline, git, stdout &amp; error logs, file reads, system health, audit log.</li>
                     <li><strong>Supabase bearer token auth</strong> with subscription plan validation, TLS via sslip.io + Let's Encrypt out of the box.</li>
           <li><strong>116+ RED patterns</strong> across 21 categories block deletion, reboot, shell invocation, DB writes, package install, privilege escalation.</li>
           <li><strong>Symlink realpath check</strong> and path allowlist keep file reads inside declared directories.</li>
         </ul>
-        <a class="btn" href="https://github.com/forgerift/vps-control-mcp">Repo &amp; install ‚Üí</a>
+        <a class="btn" href="https://github.com/ForgeRift/vps-control-mcp">Repo &amp; install ?</a>
       </div>
 
     </div>
@@ -264,11 +264,11 @@
     <h2>See it in action</h2>
     <div class="grid-2" style="margin-top: 8px;">
       <div>
-        <p style="color:var(--fg-muted); font-size:0.95rem; margin-bottom: 12px;"><strong style="color:var(--fg);">local-terminal</strong> ‚Äî RED-tier block intercepting a dangerous command before it reaches the shell.</p>
+        <p style="color:var(--fg-muted); font-size:0.95rem; margin-bottom: 12px;"><strong style="color:var(--fg);">local-terminal</strong> ó RED-tier block intercepting a dangerous command before it reaches the shell.</p>
         <img src="media/local-terminal_04_red-block.gif" alt="local-terminal RED-tier block demo" style="width:100%; border-radius:10px; border:1px solid var(--border);">
       </div>
       <div>
-        <p style="color:var(--fg-muted); font-size:0.95rem; margin-bottom: 12px;"><strong style="color:var(--fg);">vps-control</strong> ‚Äî full deploy pipeline: git pull ‚Üí build ‚Üí PM2 restart, driven by Claude.</p>
+        <p style="color:var(--fg-muted); font-size:0.95rem; margin-bottom: 12px;"><strong style="color:var(--fg);">vps-control</strong> ó full deploy pipeline: git pull ? build ? PM2 restart, driven by Claude.</p>
         <img src="media/vps-control_03_deploy.gif" alt="vps-control deploy pipeline demo" style="width:100%; border-radius:10px; border:1px solid var(--border);">
       </div>
     </div>
@@ -283,20 +283,20 @@
     </p>
     <div class="tier-row" style="margin-top: 18px;">
       <div class="tier">
-        <h4><span class="dot red"></span>RED ‚Äî hard-blocked</h4>
+        <h4><span class="dot red"></span>RED ó hard-blocked</h4>
         <p>File deletion, shutdown, code exec via PowerShell/bash -c, curl/wget/scp/ssh, database writes, privilege escalation, Unicode homoglyphs, newline injection. No override, no flag, no escape.</p>
       </div>
       <div class="tier">
-        <h4><span class="dot amber"></span>AMBER ‚Äî dry-run gate</h4>
+        <h4><span class="dot amber"></span>AMBER ó dry-run gate</h4>
         <p>Bulk copies, <code>find -exec</code>, wildcard renames, package updates. First call forces <code>dry_run=true</code> with a visible warning; a second explicit call is required to execute.</p>
       </div>
       <div class="tier">
-        <h4><span class="dot green"></span>GREEN ‚Äî allowed &amp; logged</h4>
+        <h4><span class="dot green"></span>GREEN ó allowed &amp; logged</h4>
         <p>Everything else. Rate-limited, timeout-capped, redacted audit log, and a hard cap on the escape-hatch tool. The boring tier by design.</p>
       </div>
     </div>
     <div class="note">
-      <strong>Honest disclosure.</strong> These plugins significantly reduce ‚Äî but do not eliminate ‚Äî the need for manual terminal work. By design, a defined set of high-risk operations (file deletion, firewall changes, package removal, credential access, and others) are permanently blocked and will always require you to run them yourself. When Claude hits one of those, it tells you exactly what to run and why. For everything else ‚Äî reads, logs, builds, deploys, diagnostics ‚Äî Claude handles it without your intervention. Additionally, LLMs follow instructions probabilistically: Claude may occasionally suggest &quot;paste this into your terminal&quot; even when the plugin is active. We treat every such instance as a defect and ship mitigations each release.
+      <strong>Honest disclosure.</strong> These plugins significantly reduce ó but do not eliminate ó the need for manual terminal work. By design, a defined set of high-risk operations (file deletion, firewall changes, package removal, credential access, and others) are permanently blocked and will always require you to run them yourself. When Claude hits one of those, it tells you exactly what to run and why. For everything else ó reads, logs, builds, deploys, diagnostics ó Claude handles it without your intervention. Additionally, LLMs follow instructions probabilistically: Claude may occasionally suggest &quot;paste this into your terminal&quot; even when the plugin is active. We treat every such instance as a defect and ship mitigations each release.
     </div>
   </div>
 </section>
@@ -305,16 +305,16 @@
   <div class="wrap">
     <h2>Pricing</h2>
     <p style="color:var(--fg-muted); max-width: 720px;">
-      All plans include a <strong>14-day free trial</strong> ‚Äî no charge during the trial period. No refunds after trial ends.
+      All plans include a <strong>14-day free trial</strong> ó no charge during the trial period. No refunds after trial ends.
     </p>
     <p style="color:var(--fg-muted); max-width: 720px; margin-top: 8px;">
-      ‚ö†Ô∏è <strong>Windows 10 / 11 only</strong> ‚Äî these plugins run on Claude Desktop for Windows. macOS support is planned for a future release.
+      ?? <strong>Windows 10 / 11 only</strong> ó these plugins run on Claude Desktop for Windows. macOS support is planned for a future release.
     </p>
     <div class="pricing" style="margin-top: 20px;">
       <div class="price">
         <div class="tier-name">Individual</div>
         <div class="amt">$14.99</div>
-        <div class="per">per month ‚Äî one plugin</div>
+        <div class="per">per month ó one plugin</div>
         <div class="annual">or <strong>$149 / yr</strong> &mdash; save $31 &nbsp;<span>($179.88)</span></div>
         <ul>
           <li>All tools for your chosen plugin</li>
@@ -322,17 +322,17 @@
         </ul>
         <div class="btn-stack">
           <div class="btn-plugin-label">vps-control</div>
-          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=vps-monthly">Try free ‚Äî 14 days</a>
-          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=vps-annual">Get annual ‚Äî $149/yr ‚Äî save $31</a>
+          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=vps-monthly">Try free ó 14 days</a>
+          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=vps-annual">Get annual ó $149/yr ó save $31</a>
           <div class="btn-plugin-label">local-terminal</div>
-          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=lt-monthly">Try free ‚Äî 14 days</a>
-          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=lt-annual">Get annual ‚Äî $149/yr ‚Äî save $31</a>
+          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=lt-monthly">Try free ó 14 days</a>
+          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=lt-annual">Get annual ó $149/yr ó save $31</a>
         </div>
       </div>
       <div class="price featured">
         <div class="tier-name">Bundle (best value)</div>
         <div class="amt">$19.99</div>
-        <div class="per">per month ‚Äî both plugins</div>
+        <div class="per">per month ó both plugins</div>
         <div class="annual">or <strong>$199 / yr</strong> &mdash; save $41 &nbsp;<span>($239.88)</span></div>
         <ul>
           <li>All local-terminal tools</li>
@@ -340,22 +340,22 @@
           <li>Email support, 1 business day</li>
         </ul>
         <div class="btn-stack">
-          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=bundle-monthly">Try Bundle free ‚Äî 14 days</a>
-          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=bundle-annual">Get annual ‚Äî $199/yr ‚Äî save $41</a>
+          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=bundle-monthly">Try Bundle free ó 14 days</a>
+          <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=bundle-annual">Get annual ó $199/yr ó save $41</a>
         </div>
       </div>
       <div class="price">
         <div class="tier-name">Founder Cohort</div>
         <div class="amt">$9.99</div>
-        <div class="per">per month ‚Äî Individual &nbsp;/&nbsp; $14.99 ‚Äî Bundle</div>
+        <div class="per">per month ó Individual &nbsp;/&nbsp; $14.99 ó Bundle</div>
         <ul>
-          <li>Individual plugin ‚Äî $9.99/mo locked for life</li>
-          <li>Bundle ‚Äî $14.99/mo locked for life</li>
-          <li>Monthly billing only ‚Äî no annual option</li>
-          <li>First 100 subscribers or 3 months post-launch ‚Äî whichever comes first</li>
+          <li>Individual plugin ó $9.99/mo locked for life</li>
+          <li>Bundle ó $14.99/mo locked for life</li>
+          <li>Monthly billing only ó no annual option</li>
+          <li>First 100 subscribers or 3 months post-launch ó whichever comes first</li>
         </ul>
         <div class="lock-warning">
-          <strong>üîí Rate lock requires an active subscription.</strong> Canceling permanently forfeits your Founder price ‚Äî it cannot be reclaimed after lapse.
+          <strong>?? Rate lock requires an active subscription.</strong> Canceling permanently forfeits your Founder price ó it cannot be reclaimed after lapse.
         </div>
         <div class="btn-stack">
           <a class="btn primary" href="https://payments.forgerift.io/checkout?plan=vps-founder-monthly">Claim vps-control Founder</a>
@@ -365,7 +365,7 @@
       </div>
     </div>
     <div class="note">
-      Founder Cohort pricing is locked for the life of your subscription. Canceling permanently forfeits the Founder rate ‚Äî reactivating after lapse restores access at the then-current price. See the <a href="/terms.html">Terms of Service</a> for full details.
+      Founder Cohort pricing is locked for the life of your subscription. Canceling permanently forfeits the Founder rate ó reactivating after lapse restores access at the then-current price. See the <a href="/terms.html">Terms of Service</a> for full details.
     </div>
   </div>
 </section>
@@ -375,16 +375,16 @@
 <footer>
   <div class="wrap">
     <div>
-      &copy; 2026 ForgeRift LLC ¬∑
+      &copy; 2026 ForgeRift LLC ∑
       <a href="mailto:support@forgerift.io">support@forgerift.io</a>
     </div>
     <div>
-      <a href="https://github.com/forgerift">GitHub</a> ¬∑
-      <a href="https://github.com/forgerift/local-terminal-mcp">local-terminal</a> ¬∑
-      <a href="https://github.com/forgerift/vps-control-mcp">vps-control</a> ¬∑
-      <a href="/terms.html">Terms</a> ¬∑
-      <a href="/privacy.html">Privacy</a> ¬∑
-      <a href="/cookies.html">Cookies</a> ¬∑
+      <a href="https://github.com/ForgeRift">GitHub</a> ∑
+      <a href="https://github.com/ForgeRift/local-terminal-mcp">local-terminal</a> ∑
+      <a href="https://github.com/ForgeRift/vps-control-mcp">vps-control</a> ∑
+      <a href="/terms.html">Terms</a> ∑
+      <a href="/privacy.html">Privacy</a> ∑
+      <a href="/cookies.html">Cookies</a> ∑
       <a href="https://billing.stripe.com/p/login/4gMdR91Sg5sgd1ybuE2Ry00">Manage subscription</a>
     </div>
   </div>
