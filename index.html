@@ -1,4 +1,4 @@
-﻿<!doctype html>
+﻿ï»¿<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -207,11 +207,11 @@
     We run the safe tasks automatically so you don't have to. Reading files, checking logs, running builds, deploying, diagnosing errors — Claude handles those directly, no copy-pasting required. High-risk operations stay permanently blocked and in your hands by design. Every call is checked against a three-tier security model, and every decision is logged.
   </p>
   <div class="badges">
-    <span class="badge">Source available (BUSL 1.1)</span>
+    <span class="badge">Open source (MIT)</span>
     <span class="badge">Audited — 80+ adversarial findings closed</span>
     <span class="badge green">GREEN allowlist</span>
     <span class="badge amber">AMBER dry-run gate</span>
-    <span class="badge red">RED hard-block (725+ combined patterns)</span>
+    <span class="badge red">RED hard-block (256+ combined patterns)</span>
   </div>
   <div class="cta">
     <a class="btn primary" href="#plugins">See the plugins</a>
@@ -227,11 +227,11 @@
       <div class="card">
         <div class="platform">Windows 10 / 11 · Claude Desktop + Cowork</div>
         <h3>local-terminal</h3>
-        <div class="kicker">Audited access to a local Windows machine, localhost-only.</div>
+        <div class="kicker">Audited access to your local Windows machine. No network port &mdash; runs in-process via Claude Desktop.</div>
         <ul>
           <li><strong>8 structured tools</strong> — file listing, read, search, git, npm, system info, escape hatch.</li>
-          <li><strong>Runs as a Windows Service</strong> via NSSM, bound strictly to <code>127.0.0.1</code>.</li>
-          <li><strong>450+ RED patterns</strong> across 27 categories block deletion, shutdown, code exec, exfiltration, credential access, persistence.</li>
+          <li><strong>.mcpb extension</strong> — installs directly into Claude Desktop. No Windows Service or configuration files required.</li>
+          <li><strong>140+ RED patterns</strong> across 27 categories block deletion, shutdown, code exec, exfiltration, credential access, persistence.</li>
           <li><strong>Sensitive files protected</strong> — <code>.env</code>, <code>.ssh</code>, credential stores blocked even from read tools.</li>
         </ul>
         <a class="btn" href="https://github.com/forgerift/local-terminal-mcp">Repo &amp; install →</a>
@@ -242,9 +242,9 @@
         <h3>vps-control</h3>
         <div class="kicker">Audited access to a Linux VPS you already run.</div>
         <ul>
-          <li><strong>17 structured tools</strong> â€” PM2 status, deploy pipeline, git, stdout &amp; error logs, file reads, system health, audit log.</li>
-          <li><strong>OAuth 2.0 + bearer token</strong>, TLS via sslip.io + Let's Encrypt out of the box.</li>
-          <li><strong>275+ RED patterns</strong> across 26 categories block deletion, reboot, shell invocation, DB writes, package install, privilege escalation.</li>
+          <li><strong>17 structured tools</strong> — PM2 status, deploy pipeline, git, stdout &amp; error logs, file reads, system health, audit log.</li>
+                    <li><strong>Supabase bearer token auth</strong> with subscription plan validation, TLS via sslip.io + Let's Encrypt out of the box.</li>
+          <li><strong>116+ RED patterns</strong> across 21 categories block deletion, reboot, shell invocation, DB writes, package install, privilege escalation.</li>
           <li><strong>Symlink realpath check</strong> and path allowlist keep file reads inside declared directories.</li>
         </ul>
         <a class="btn" href="https://github.com/forgerift/vps-control-mcp">Repo &amp; install →</a>
@@ -319,6 +319,10 @@
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=vps-monthly">Try vps-control free</a>
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=lt-monthly">Try local-terminal free</a>
         </div>
+        <div class="cta" style="margin-top: 8px; justify-content: center; gap: 8px; flex-wrap: wrap;">
+          <a class="btn" href="https://payments.104-131-74-82.sslip.io/checkout?plan=vps-annual">vps-control annual ($149/yr)</a>
+          <a class="btn" href="https://payments.104-131-74-82.sslip.io/checkout?plan=lt-annual">local-terminal annual ($149/yr)</a>
+        </div>
       </div>
       <div class="price featured">
         <div class="tier-name">Bundle (best value)</div>
@@ -330,8 +334,9 @@
           <li>All vps-control tools</li>
           <li>Email support, 1 business day</li>
         </ul>
-        <div class="cta" style="margin-top: 18px; justify-content: center;">
+        <div class="cta" style="margin-top: 18px; justify-content: center; gap: 8px; flex-wrap: wrap;">
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=bundle-monthly">Try the Bundle free</a>
+          <a class="btn" href="https://payments.104-131-74-82.sslip.io/checkout?plan=bundle-annual">Annual ($199/yr)</a>
         </div>
       </div>
       <div class="price">
@@ -374,7 +379,8 @@
       <a href="https://github.com/forgerift/vps-control-mcp">vps-control</a> ·
       <a href="/terms.html">Terms</a> ·
       <a href="/privacy.html">Privacy</a> ·
-      <a href="/cookies.html">Cookies</a>
+      <a href="/cookies.html">Cookies</a> ·
+      <a href="https://billing.stripe.com/p/login/4gMdR91Sg5sgd1ybuE2Ry00">Manage subscription</a>
     </div>
   </div>
 </footer>
