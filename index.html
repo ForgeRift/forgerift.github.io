@@ -148,6 +148,8 @@
     padding: 22px;
     background: var(--bg-2);
     text-align: center;
+    display: flex;
+    flex-direction: column;
   }
   .price.featured { border-color: var(--accent); }
   .price .tier-name { color: var(--fg-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -170,7 +172,7 @@
     margin-top: 22px;
   }
 
-  .btn-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+  .btn-stack { display: flex; flex-direction: column; gap: 8px; margin-top: auto; padding-top: 18px; }
   .btn-stack .btn { display: block; text-align: center; width: 100%; }
   .btn-plugin-label { font-size: 0.78rem; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 10px; margin-bottom: 2px; }
   .btn-plugin-label:first-child { margin-top: 0; }
@@ -259,21 +261,6 @@
   </div>
 </section>
 
-<section id="demo">
-  <div class="wrap">
-    <h2>See it in action</h2>
-    <div class="grid-2" style="margin-top: 8px;">
-      <div>
-        <p style="color:var(--fg-muted); font-size:0.95rem; margin-bottom: 12px;"><strong style="color:var(--fg);">local-terminal</strong> &mdash; RED-tier block intercepting a dangerous command before it reaches the shell.</p>
-        <img src="media/local-terminal_04_red-block.gif" alt="local-terminal RED-tier block demo" style="width:100%; border-radius:10px; border:1px solid var(--border);">
-      </div>
-      <div>
-        <p style="color:var(--fg-muted); font-size:0.95rem; margin-bottom: 12px;"><strong style="color:var(--fg);">vps-control</strong> &mdash; full deploy pipeline: git pull &rarr; build &rarr; PM2 restart, driven by Claude.</p>
-        <img src="media/vps-control_03_deploy.gif" alt="vps-control deploy pipeline demo" style="width:100%; border-radius:10px; border:1px solid var(--border);">
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="security">
   <div class="wrap">
