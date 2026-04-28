@@ -2,7 +2,7 @@
 
 **For:** new users, support triage, and Anthropic marketplace reviewers  
 **Products covered:** local-terminal-mcp · vps-control-mcp  
-**Last updated:** April 2026
+**Last updated:** 2026-04-28
 
 ---
 
@@ -29,7 +29,7 @@ local-terminal-mcp: Windows 10 and Windows 11 only. macOS and Linux support is p
 vps-control-mcp: Runs on Ubuntu 20.04+ or Debian 11+ on your Linux VPS. You access it from Claude Desktop on Windows.
 
 **Do I need a Claude Pro subscription?**  
-You need Claude Desktop, which is a free download from anthropic.com. A Claude subscription (Pro, Team, or Enterprise) is required for full usage — the free tier has limited message capacity.
+You need Claude Desktop, which is a free download from claude.ai/download. A Claude subscription (Pro, Team, or Enterprise) is required for full usage — the free tier has limited message capacity.
 
 **Do I need an Anthropic API key?**  
 An API key is optional but recommended. It enables AI-assisted review of AMBER-tier commands — a second pass where Claude evaluates borderline commands before they execute. Without it, the plugin still works fully but AMBER commands skip this review step. API keys are available at console.anthropic.com.
