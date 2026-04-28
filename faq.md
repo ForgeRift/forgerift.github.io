@@ -29,10 +29,10 @@ local-terminal-mcp: Windows 10 and Windows 11 only. macOS and Linux support is p
 vps-control-mcp: Runs on Ubuntu 20.04+ or Debian 11+ on your Linux VPS. You access it from Claude Desktop on Windows.
 
 **Do I need a Claude Pro subscription?**  
-You need Claude Desktop, which requires a Claude subscription. A Claude Pro plan is sufficient. Claude Team and Enterprise plans also work.
+You need Claude Desktop, which is a free download from anthropic.com. A Claude subscription (Pro, Team, or Enterprise) is required for full usage — the free tier has limited message capacity.
 
 **Do I need an Anthropic API key?**  
-An API key is optional but recommended. It enables Layer 3 AI-assisted review of AMBER-tier commands — a second pass where Claude itself evaluates borderline commands before they execute. Without it, the plugin still works fully, but AMBER commands skip the AI review layer. API keys are available at console.anthropic.com.
+An API key is optional but recommended. It enables AI-assisted review of AMBER-tier commands — a second pass where Claude evaluates borderline commands before they execute. Without it, the plugin still works fully but AMBER commands skip this review step. API keys are available at console.anthropic.com.
 
 **Can I use this with Cowork mode?**  
 Yes. Both plugins are compatible with Claude Cowork mode (the Claude desktop app).
@@ -88,7 +88,7 @@ Every command Claude tries to run is classified before execution:
 No. Sensitive file paths are blocked even from read-only tools. This includes .env files, SSH keys, .pem/.key/.pfx certificates, Windows credential stores, cloud credentials (.aws/, .gcloud/, .azure/), browser login data, kubeconfig, and more.
 
 **Does the plugin send my data anywhere?**  
-The plugin runs entirely on your machine and binds to localhost (127.0.0.1) — it is not reachable from the network. Audit logs are written to disk locally. The only external calls are to the Claude API (via Claude Desktop, to process your conversation) and to ForgeRift's license validation endpoint (to verify your subscription). No command output, file contents, or audit log data is transmitted to ForgeRift servers.
+The plugin runs entirely on your machine as an in-process stdio extension inside Claude Desktop — it opens no network port and is not reachable from the network. Audit logs are written to disk locally. The only external calls are to the Claude API (via Claude Desktop, to process your conversation) and to ForgeRift's license validation endpoint (to verify your subscription). No command output, file contents, or audit log data is transmitted to ForgeRift servers.
 
 **Where are the audit logs stored?**  
 In the `logs/audit.log` file within the plugin's install directory, managed by Claude Desktop. Log rotation caps at 10MB with one backup. Secret values (tokens, keys, passwords) are automatically redacted from logs before writing.
@@ -103,7 +103,7 @@ Yes. The plugin was tested against 80+ adversarial scenarios covering prompt inj
 **What does it cost?**  
 - **Individual:** $14.99/month or $149/year (one plugin of your choice)
 - **Bundle:** $19.99/month or $199/year (both local-terminal-mcp and vps-control-mcp)
-- **Founder Cohort:** $9.99/month individual / $14.99/month bundle, locked for life — available to the first 100 subscribers or for 3 months post-launch, whichever comes first
+- **Founder Cohort:** $9.99/month individual / $14.99/month bundle, locked for life — available to the first 100 subscribers or for 3 months post-launch, whichever milestone comes first
 
 **Is there a free trial?**  
 Yes. All plans include a 14-day free trial. You will not be charged during the trial period.
