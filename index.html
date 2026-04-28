@@ -170,6 +170,11 @@
     margin-top: 22px;
   }
 
+  .btn-stack { display: flex; flex-direction: column; gap: 8px; margin-top: 18px; }
+  .btn-stack .btn { display: block; text-align: center; width: 100%; }
+  .btn-plugin-label { font-size: 0.78rem; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 10px; margin-bottom: 2px; }
+  .btn-plugin-label:first-child { margin-top: 0; }
+
   footer {
     border-top: 1px solid var(--border);
     padding: 36px 0 48px;
@@ -211,7 +216,7 @@
     <span class="badge">Audited — 80+ adversarial findings closed</span>
     <span class="badge green">GREEN allowlist</span>
     <span class="badge amber">AMBER dry-run gate</span>
-    <span class="badge red">RED hard-block (256+ combined patterns)</span>
+    <span class="badge red">RED hard-block (256+ patterns across both plugins)</span>
   </div>
   <div class="cta">
     <a class="btn primary" href="#plugins">See the plugins</a>
@@ -315,13 +320,13 @@
           <li>All tools for your chosen plugin</li>
           <li>Email support, 1 business day</li>
         </ul>
-        <div class="cta" style="margin-top: 18px; justify-content: center; gap: 8px; flex-wrap: wrap;">
-          <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=vps-monthly">Try vps-control free</a>
-          <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=lt-monthly">Try local-terminal free</a>
-        </div>
-        <div class="cta" style="margin-top: 8px; justify-content: center; gap: 8px; flex-wrap: wrap;">
-          <a class="btn" href="https://payments.104-131-74-82.sslip.io/checkout?plan=vps-annual">vps-control annual ($149/yr)</a>
-          <a class="btn" href="https://payments.104-131-74-82.sslip.io/checkout?plan=lt-annual">local-terminal annual ($149/yr)</a>
+        <div class="btn-stack">
+          <div class="btn-plugin-label">vps-control</div>
+          <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=vps-monthly">Try free — 14 days</a>
+          <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=vps-annual">Get annual — $149/yr · save $31</a>
+          <div class="btn-plugin-label">local-terminal</div>
+          <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=lt-monthly">Try free — 14 days</a>
+          <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=lt-annual">Get annual — $149/yr · save $31</a>
         </div>
       </div>
       <div class="price featured">
@@ -334,9 +339,9 @@
           <li>All vps-control tools</li>
           <li>Email support, 1 business day</li>
         </ul>
-        <div class="cta" style="margin-top: 18px; justify-content: center; gap: 8px; flex-wrap: wrap;">
-          <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=bundle-monthly">Try the Bundle free</a>
-          <a class="btn" href="https://payments.104-131-74-82.sslip.io/checkout?plan=bundle-annual">Annual ($199/yr)</a>
+        <div class="btn-stack">
+          <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=bundle-monthly">Try Bundle free — 14 days</a>
+          <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=bundle-annual">Get annual — $199/yr · save $41</a>
         </div>
       </div>
       <div class="price">
@@ -352,7 +357,7 @@
         <div class="lock-warning">
           <strong>⚠ Rate lock requires an active subscription.</strong> Canceling permanently forfeits your Founder price — it cannot be reclaimed after lapse.
         </div>
-        <div class="cta" style="margin-top: 18px; justify-content: center; gap: 8px; flex-wrap: wrap;">
+        <div class="btn-stack">
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=vps-founder-monthly">Claim vps-control Founder</a>
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=lt-founder-monthly">Claim local-terminal Founder</a>
           <a class="btn primary" href="https://payments.104-131-74-82.sslip.io/checkout?plan=bundle-founder-monthly">Claim Bundle Founder</a>
