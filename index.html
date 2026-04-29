@@ -268,7 +268,7 @@
   <div class="wrap">
     <h2>How we keep Claude from doing the wrong thing</h2>
     <p style="color:var(--fg-muted); max-width: 720px;">
-      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. Structured tools never spawn a shell; the run_command escape hatch passes through cmd.exe only after RED + AMBER classification. No single tool bypasses the check. Audit logs go to disk with token and secret redaction. When configured, the AI safety layer consumes Anthropic API tokens billed to your account.
+      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. Structured tools execute fixed allowlisted operations (no user-provided command string reaches the security classifier); only the run_command escape hatch accepts arbitrary command text, passing through cmd.exe after RED + AMBER classification. No single tool bypasses the check. Audit logs go to disk with token and secret redaction. When configured, the AI safety layer consumes Anthropic API tokens billed to your account.
     </p>
     <div class="tier-row" style="margin-top: 18px;">
       <div class="tier">
