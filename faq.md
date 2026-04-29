@@ -93,7 +93,7 @@ Every command Claude tries to run is classified before execution:
 - **GREEN** — Allowed and logged. Subject to a per-tool wall-clock timeout (30 seconds for `run_command` and `run_git_command`, 60 seconds for `run_npm_command`) and full audit logging. The default tier for all structured tools and safe shell commands.
 
 **Can Claude access my passwords or secret files?**  
-No. Sensitive file paths are blocked even from read-only tools. This includes .env files, SSH keys, .pem/.key/.pfx certificates, Windows credential stores, cloud credentials (.aws/, .gcloud/, .azure/), browser login data, kubeconfig, and more.
+No. Sensitive file paths are blocked even from read-only tools. This includes .env files, SSH keys, .pem/.key/.pfx/.ppk certificates, Windows credential stores, cloud credentials (.aws/, .gcloud/, .azure/), browser login data, kubeconfig, and more.
 
 **Does the plugin send my data anywhere?**  
 The plugin runs entirely on your machine as a sandboxed child process spawned by Claude Desktop over stdio — it opens no inbound network port and is not reachable from the network. Audit logs are written to disk locally. The only external calls are:
