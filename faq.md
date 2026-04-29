@@ -117,7 +117,7 @@ The plugin has been internally reviewed across multiple rounds of adversarial te
 **What does it cost?**  
 - **Individual:** $14.99/month or $149/year (one plugin of your choice)
 - **Bundle:** $19.99/month or $199/year (both local-terminal-mcp and vps-control-mcp; each installs separately as its own .mcpb extension — note that local-terminal-mcp is Windows-only, so macOS/Linux users on the Bundle plan can only use the vps-control-mcp half)
-- **Founder Cohort (limited):** $9.99/month individual / $14.99/month bundle *(both plugins at standard-individual price)* — rate-locked as long as your subscription stays active, monthly billing only — eligibility closes at the earlier of (a) the 100th paid subscriber or (b) 3 months after the marketplace listing date
+- **Founder Cohort (limited):** $9.99/month individual / $14.99/month bundle *(Bundle Founder pricing equals the regular Individual plan rate)* — rate-locked as long as your subscription stays active, monthly billing only — eligibility closes at the earlier of (a) the 100th paid subscriber or (b) 3 months after the marketplace listing date
 
 **Is there a free trial?**  
 Yes. All plans include a 14-day free trial. A valid payment method is required at sign-up but will not be charged until the trial ends. Your card issuer may show a temporary $0 or $1 authorization hold at sign-up, which is automatically released and does not constitute a charge. You can cancel at any time during the trial to avoid any charge.
