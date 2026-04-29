@@ -40,10 +40,10 @@ No — it is optional. If provided, it enables AI-assisted safety classification
 **Why does Claude ask me to describe the task every time I run a shell command?**  
 The `run_command` tool requires a `justification` string — a plain-English description of what you're trying to accomplish and why the structured tools (like `run_git_command` or `run_npm_command`) can't cover it. This is a required parameter, not optional. It serves two purposes: it feeds the AI-assisted safety classification on every `run_command` invocation (if you have an Anthropic API key configured) and it creates a human-readable audit trail. If you have an API key configured, your justification text is sent to Anthropic's API alongside the command text — avoid including secrets or sensitive data in your justification.
 
-For AMBER-tier commands specifically, the first call always runs as a dry-run preview (`dry_run=true` is the default). After reviewing the dry-run output and any AI evaluation result presented alongside it, Claude will re-invoke the tool with `dry_run=false` to actually execute — but only after you confirm in chat. You are always in control of whether execution proceeds.
+For AMBER-tier commands specifically, `dry_run=true` is the default for `run_command` and the response includes a warning. If Claude passes `dry_run=false` on the first call, the command executes immediately — the plugin has no session state to enforce a two-call gate. The recommended workflow is for Claude to preview first with `dry_run=true`, relay the warning to you, and only re-invoke with `dry_run=false` after you confirm in chat. You are always in control of whether execution proceeds.
 
 **Can I use this with Cowork mode?**  
-Yes. Both plugins are compatible with Claude Cowork mode *(Cowork mode is an optional Anthropic feature for autonomous multi-step tasks — the plugin works in both standard Claude Desktop and Cowork mode.)*. AMBER-tier commands still require explicit user confirmation in Cowork mode — Claude pauses and presents the dry-run description before executing.
+Yes. Both plugins are compatible with Claude Cowork mode *(Cowork mode is an optional Anthropic feature for autonomous multi-step tasks — the plugin works in both standard Claude Desktop and Cowork mode.)*. AMBER-tier commands fire a warning in Cowork mode — Claude should present the dry-run description and wait for your confirmation before re-calling with `dry_run=false`.
 
 ---
 
@@ -89,7 +89,7 @@ There are 140+ blocked patterns across 27 categories in local-terminal-mcp. The 
 Every command Claude tries to run is classified before execution:
 
 - **RED** — Hard-blocked. Permanently denied with no override, no flag, no escape. Returns a structured error explaining the category and reason.
-- **AMBER** — Warning-required. The first call forces a dry run with a visible warning. A second explicit call is required to actually execute. Covers moderately risky but legitimate operations like bulk copies and wildcard renames.
+- **AMBER** — Warning-required. `dry_run=true` is the default for `run_command`; an AMBER match fires a visible warning in the response. The recommended workflow is to preview first, confirm, then re-call with `dry_run=false` — though this is a workflow convention enforced by Claude's behavior, not a server-side gate. Covers moderately risky but legitimate operations like bulk copies and wildcard renames.
 - **GREEN** — Allowed and logged. Subject to a per-tool wall-clock timeout (30 seconds for `run_command` and `run_git_command`, 60 seconds for `run_npm_command`) and full audit logging. The default tier for all structured tools and safe shell commands.
 
 **Can Claude access my passwords or secret files?**  
@@ -190,8 +190,3 @@ Yes — full documentation lives in the GitHub repository at [github.com/ForgeRi
 - **COMMANDS.md** — complete RED/AMBER/GREEN pattern reference
 - **SECURITY.md** — threat model, safety guarantees, and operator controls
 - **TROUBLESHOOTING.md** — common issues and fixes
-- **CHANGELOG.md** — full release history
-- **CREDITS.md** — open-source dependencies and attributions
-
----
-*© 2026 ForgeRift LLC · [forgerift.io](https://forgerift.io) · [support@forgerift.io](mailto:support@forgerift.io)*

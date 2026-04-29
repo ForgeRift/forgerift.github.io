@@ -268,16 +268,16 @@
   <div class="wrap">
     <h2>How we keep Claude from doing the wrong thing</h2>
     <p style="color:var(--fg-muted); max-width: 720px;">
-      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. Structured tools execute fixed allowlisted operations (no user-provided command string reaches the security classifier); only the run_command escape hatch accepts arbitrary command text, passing through cmd.exe after RED + AMBER classification. No single tool bypasses the check. Audit logs go to disk with token and secret redaction. When configured, the AI safety layer consumes Anthropic API tokens billed to your account.
+      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. Structured tools execute fixed allowlisted operations (no user-provided command string reaches the security classifier); only the run_command escape hatch accepts arbitrary command text, passing through cmd.exe after RED + AMBER classification. No single tool bypasses the check. Audit logs go to disk with token and secret redaction. When configured, the AI safety layer consumes Anthropic API tokens billed to your account. <strong>Without an Anthropic API key</strong> (or if the API call fails), the AI classification layers are silently skipped and the plugin falls back to the static RED block list plus AMBER dry-run warnings only. Set <code>LAYER_STRICT_MODE=true</code> to block on API failure instead of skipping.
     </p>
     <div class="tier-row" style="margin-top: 18px;">
       <div class="tier">
         <h4><span class="dot red"></span>RED &mdash; hard-blocked</h4>
-        <p>File deletion, shutdown, code exec via PowerShell/bash -c, curl/wget/scp/ssh, database writes, privilege escalation, Unicode homoglyphs, newline injection. No override, no flag, no escape.</p>
+        <p>File deletion, shutdown, code exec via PowerShell/bash -c, curl/wget/scp/ssh, database writes, privilege escalation, Unicode homoglyphs, newline injection (each line is checked independently against the block list). No override, no flag, no escape for the hard-blocked categories.</p>
       </div>
       <div class="tier">
         <h4><span class="dot amber"></span>AMBER &mdash; dry-run gate</h4>
-        <p>Bulk copies, <code>find -exec</code>, wildcard renames, package updates. First call forces <code>dry_run=true</code> with a visible warning; a second explicit call is required to execute.</p>
+        <p>Bulk copies, <code>find -exec</code>, wildcard renames, package updates. <code>dry_run=true</code> is the default; an AMBER match fires a visible warning. Passing <code>dry_run=false</code> on the first call executes immediately — the recommended workflow is to preview first, then confirm.</p>
       </div>
       <div class="tier">
         <h4><span class="dot green"></span>GREEN &mdash; allowed &amp; logged</h4>
@@ -363,8 +363,4 @@
 <footer>
   <div class="wrap">
     <div>&copy; 2026 ForgeRift LLC &middot; Wisconsin, USA &middot; <a href="mailto:support@forgerift.io">support@forgerift.io</a></div>
-    <div><a href="/terms.html">Terms of Service</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/cookies.html">Cookie Policy</a> &middot; <a href="https://github.com/ForgeRift">GitHub</a></div>
-  </div>
-</footer>
-</body>
-</html>
+    <div>
