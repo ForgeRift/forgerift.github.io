@@ -51,13 +51,9 @@
 <main>
   <div class="content wrap">
     <h1>Privacy Policy</h1>
-    <div class="meta"></div>
-    <p><strong>Effective date:</strong> 2026-04-24
-<strong>Last updated:</strong> 2026-04-24
-<strong>Controller:</strong> ForgeRift LLC, a Wisconsin limited liability company ("ForgeRift", "we", "us", or "our").
-<strong>Contact:</strong> support@forgerift.io</p>
+    <div class="meta">Effective date: 2026-04-24 &middot; Last updated: 2026-04-28 &middot; Controller: ForgeRift LLC &middot; <a href="mailto:support@forgerift.io">support@forgerift.io</a></div>
 <blockquote>
-<p><strong>Short version.</strong> ForgeRift operates on a two-layer architecture. The <strong>plugin layer</strong> — the open-source code that runs on your machines — collects nothing about you, your systems, your commands, or your usage. It never phones home. This is an auditable property of the public source code. The <strong>subscription service layer</strong> — forgerift.io, Stripe billing, and Resend email — collects the minimum data needed to operate a paid service: your email address, billing information (held by Stripe), and transactional email records (held by Resend). This Privacy Policy explains both layers in detail.</p>
+<p><strong>Short version.</strong> ForgeRift operates on a two-layer architecture. The <strong>plugin layer</strong> — the open-source code that runs on your machines — transmits one piece of data to ForgeRift: your license key, sent at startup to verify your active subscription (a timestamped validation record is retained for 90 days — see Section 6). No command history, file contents, command output, or in-product usage telemetry ever leave your machine. This is an auditable property of the public source code. The <strong>subscription service layer</strong> — forgerift.io, Stripe billing, and Resend email — collects the minimum data needed to operate a paid service: your email address, billing information (held by Stripe), and transactional email records (held by Resend). This Privacy Policy explains both layers in detail.</p>
 </blockquote>
 <hr />
 <h2>1. Scope</h2>
@@ -68,11 +64,21 @@
 <li>Our support channels (email and GitHub issues),</li>
 <li>Paid Subscriptions (current and future), including billing via Stripe and transactional email via Resend.</li>
 </ul>
-<p>It does not cover third-party platforms (Anthropic, GitHub, Stripe, Resend, Let's Encrypt / sslip.io) except to describe how we use them. Those platforms have their own privacy practices and policies, which you should review directly.</p>
+<p>It does not cover third-party platforms (Anthropic, GitHub, Stripe, Resend, Supabase, Cloudflare, Let's Encrypt / sslip.io) except to describe how we use them. Those platforms have their own privacy practices and policies, linked in Section 5, which you should review directly.</p>
 <h2>2. What we collect — the two-layer architecture</h2>
 <h3>2.1 Plugin layer — minimal data, locally contained</h3>
-<p>Neither <code>local-terminal-mcp</code> nor <code>vps-control-mcp</code> transmits usage data, command history, output, credentials, filesystem contents, telemetry, crash reports, or any other data to ForgeRift or any third party under ForgeRift's control. The one exception is license validation: on startup, the plugin sends your license key to ForgeRift's subscription service (hosted on Supabase) solely to verify your active subscription. No other data is transmitted from the plugin layer. Audit logs produced by the plugins are stored on Your Systems only and never leave them. This is a deliberate design choice and an <strong>auditable property of the publicly available source code</strong> — you can verify it by reading the source at github.com/ForgeRift. This applies to official releases as published in the ForgeRift GitHub repositories. Users should verify plugin integrity using checksums published in each GitHub release. The Plugins do not transmit data to Anthropic beyond the normal Claude API interactions you initiate through the Claude interface.</p>
-<p>The plugin layer is the source-available software distributed in each repository. It runs entirely on infrastructure you own or control. ForgeRift has no network access to your machines, no visibility into your commands, and no telemetry pipeline.</p>
+<p>The plugin layer is the open-source software distributed in each repository. It runs entirely on infrastructure you own or control — your local Windows machine for <code>local-terminal-mcp</code>, your Linux VPS for <code>vps-control-mcp</code>. ForgeRift has no network access to your machines, no visibility into your commands, and no telemetry pipeline.</p>
+<p>Neither plugin transmits usage data, command history, output, credentials, filesystem contents, telemetry, crash reports, or any other data to ForgeRift or any third party under ForgeRift's control. There are two narrow exceptions:</p>
+<ul>
+<li><strong>License validation:</strong> On startup, the plugin sends your license key to ForgeRift's subscription service (hosted on Supabase) solely to verify your active subscription. The key is transmitted as a URL query parameter over HTTPS (<code>?token=&lt;key&gt;</code>); this means the key may appear in server-side access logs on ForgeRift's infrastructure. ForgeRift's license validation logs retain only the license key and a timestamp, deleted 90 days after each record is created.</li>
+<li><strong>Optional AI safety classification (all <code>run_command</code> invocations):</strong> If you choose to supply an Anthropic API key at setup, the command text and accompanying user-provided justification (a required parameter describing the task intent) for <strong>every</strong> shell command submitted via <code>run_command</code> — not only AMBER-tier commands — are sent to Anthropic's API on your behalf for AI-assisted safety classification before execution. No environment variables, working directory, or other system context is included. A high-risk classification result may independently block execution before the re-confirmation step — the AI review is not purely advisory. This is automated processing within the meaning of GDPR Article 22, but it does not produce legal or similarly significant effects: its only outcome is whether a single shell command is blocked or proceeds to the manual re-confirmation step. You can opt out at any time by removing your Anthropic API key in Claude Desktop's extension settings, after which the AI classification layers are skipped and AMBER commands fall back to the manual dry-run-and-confirm flow. This processing is governed by Anthropic's own privacy policy. Without an API key, the plugin works fully and the AI classification layers are bypassed.</li>
+</ul>
+<p><strong>Audit logs</strong> are written to <code>logs/audit.log</code> within the extension's install directory (managed by Claude Desktop). When <code>audit.log</code> reaches 10 MB it is renamed to <code>audit.log.old</code>, overwriting any prior backup. Maximum on-disk storage is approximately 20 MB of recent activity at any given time. Logs never leave your machine. You may delete them at any time.</p>
+<p><strong>Optional Anthropic API key</strong>, if supplied, is stored by Claude Desktop in your local extension configuration and is provided to the plugin process as an environment variable at startup so the plugin can send AI-assisted safety classification requests to Anthropic's API on your behalf for every <code>run_command</code> invocation. The plugin does not log, persist, or transmit this key to any party other than Anthropic. It is never transmitted to ForgeRift. Each classification call consumes API tokens billed to your Anthropic account at Anthropic's rates.</p>
+<p><strong>Verifiability:</strong> The source code is publicly available for inspection at <a href="https://github.com/ForgeRift">github.com/ForgeRift</a>. Official <code>.mcpb</code> releases are published on GitHub with SHA-256 checksums. To verify your installation, compute the SHA-256 of the <code>.mcpb</code> file you received (PowerShell: <code>Get-FileHash local-terminal.mcpb -Algorithm SHA256</code>) and compare it to the checksum published on the GitHub releases page for that version.</p>
+<p><strong>Note on the user-provided justification:</strong> The plugin requires Claude to attach a justification string to each <code>run_command</code> call. Claude generates this automatically from your conversation — you do not type it directly. This means any sensitive information you include in your chat (such as passwords, API keys, or personal data) may appear in the justification field and, if an Anthropic API key is configured, be sent to Anthropic's API for safety classification. Treat your Claude conversation the same as any other AI chat: do not paste production secrets or credentials into the conversation.</p>
+
+<p><strong>License key security:</strong> License keys are scoped exclusively to subscription validation — they grant no access to your machine and carry no account credentials. A leaked key would allow only redundant subscription-check requests. Server access logs containing the key are restricted to ForgeRift personnel. We plan to migrate to an <code>Authorization: Bearer</code> header in a future release.</p>
 <h3>2.2 Subscription service layer — collects minimum necessary data</h3>
 <p>When you interact with forgerift.io or create a paid Subscription, ForgeRift (or its sub-processors on our behalf) collects:</p>
 <ul>
@@ -87,7 +93,7 @@
 <h3>2.4 When you use our GitHub repositories</h3>
 <p>If you open an issue, discussion, or pull request on a ForgeRift repository at <code>github.com/ForgeRift/*</code>, GitHub processes your GitHub username, any personal data you include in the post, and standard GitHub metadata. This content is public. We review, respond to, and retain that content to support the project.</p>
 <h3>2.5 When you visit forgerift.io</h3>
-<p>The forgerift.io website is a static site served by <strong>GitHub Pages</strong>. GitHub logs standard web-server information (IP address, user agent, request path, referrer) in accordance with the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>. GitHub Pages may set functional cookies necessary for serving the static site (e.g., session or load-balancing cookies set by GitHub's infrastructure). ForgeRift does not add any analytics, advertising pixels, fingerprinting, or session recording scripts to forgerift.io. If we introduce privacy-respecting analytics in the future (e.g., Plausible or Fathom — no cookies, aggregated IPs only), we will update this Policy and disclose the processor before enabling them. See also our Cookie Policy at forgerift.io/cookies for the full list of cookies set on this site.</p>
+<p>The forgerift.io website is a static site served by <strong>GitHub Pages</strong>. GitHub logs standard web-server information (IP address, user agent, request path, referrer) in accordance with the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>. GitHub Pages may set functional cookies necessary for serving the static site (e.g., session or load-balancing cookies set by GitHub's infrastructure). ForgeRift does not add any analytics, advertising pixels, fingerprinting, or session recording scripts to forgerift.io. If we introduce privacy-respecting analytics in the future (e.g., Plausible or Fathom — no cookies, aggregated IPs only), we will update this Policy and disclose the processor before enabling it. See also our <a href="/cookies.html">Cookie Policy</a> for our complete cookie disclosure.</p>
 <h3>2.6 When you contact us for security disclosure</h3>
 <p>If you email <code>security@forgerift.io</code> or use GitHub's private vulnerability reporting, we receive your report and any contact detail you provide. We treat security correspondence confidentially and use it only to triage and remediate.</p>
 <h2>3. How we use your data</h2>
@@ -99,7 +105,8 @@
 <li>Maintain a support history for continuity if you contact us again,</li>
 <li>Comply with legal obligations and defend against legal claims.</li>
 </ul>
-<p>We do not sell, rent, or share your personal data with third parties for their own marketing. We do not use your data to train machine-learning models. We do not profile you for advertising.</p>
+<p>We do not sell, rent, or share your personal data with third parties for their own marketing. ForgeRift does not use your data to train machine-learning models. We do not profile you for advertising. Sub-processors handle data per their own privacy policies, linked in Section 5.</p>
+<p><strong>Note on Claude prompt content.</strong> When you interact with Claude Desktop, the prompts and responses in your conversation are processed by Anthropic PBC's servers, not ForgeRift's. ForgeRift does not receive, store, or process your conversation content. Anthropic's use of your prompt data is governed solely by <a href="https://www.anthropic.com/legal/privacy">Anthropic's Privacy Policy</a> and their applicable usage policies.</p>
 <h2>4. Legal bases (GDPR / UK GDPR)</h2>
 <p>For users in the European Economic Area, the United Kingdom, or Switzerland, our legal bases for processing are:</p>
 <ul>
@@ -117,6 +124,7 @@
 <th>Purpose</th>
 <th>Location</th>
 <th>Data categories</th>
+<th>Privacy policy</th>
 </tr>
 </thead>
 <tbody>
@@ -125,46 +133,51 @@
 <td>Support inbox for inbound email at support@forgerift.io and security@forgerift.io</td>
 <td>U.S. (global infrastructure)</td>
 <td>Email content, sender address, attachments</td>
+<td><a href="https://policies.google.com/privacy">policies.google.com/privacy</a></td>
 </tr>
 <tr>
 <td>GitHub, Inc.</td>
 <td>Source code hosting, issue tracker, static site hosting (GitHub Pages), private vulnerability reporting</td>
 <td>U.S. (global infrastructure)</td>
 <td>GitHub username, post content, standard web-server logs</td>
+<td><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a></td>
 </tr>
 <tr>
 <td>Stripe, Inc.</td>
 <td>Payment processing, subscription management, invoicing</td>
 <td>U.S. (global infrastructure)</td>
 <td>Email address, Stripe Customer ID, billing country, card brand and last four digits, invoice records</td>
+<td><a href="https://stripe.com/privacy">stripe.com/privacy</a></td>
 </tr>
 <tr>
 <td>Resend, Inc.</td>
 <td>Transactional email delivery (receipts, renewal reminders, payment failure notices)</td>
 <td>U.S.</td>
 <td>Email address, delivery and open events for system notifications</td>
+<td><a href="https://resend.com/legal/privacy-policy">resend.com/legal/privacy-policy</a></td>
 </tr>
 <tr>
 <td>Supabase, Inc.</td>
-<td>Subscription record storage and authentication token lookup for paid plugins (forgerift-payments service)</td>
+<td>Subscription record storage and license key validation for paid plugins (forgerift-payments service)</td>
 <td>U.S. (AWS us-east-1)</td>
-<td>Email address, authentication token, subscription plan, subscription status, Stripe Customer ID, Stripe Subscription ID, trial and grace-period timestamps</td>
-</tr>
-<tr>
-<td>Cloudflare, Inc.</td>
-<td>Support email routing (Cloudflare Email Worker forwards inbound email at support@forgerift.io to our inbox)</td>
-<td>U.S. (global infrastructure)</td>
-<td>Email address, email content, sender metadata — in transit only; not stored by Cloudflare beyond standard log retention</td>
-</tr>
-<tr>
-<td>Let's Encrypt / ISRG, and sslip.io</td>
-<td>TLS certificate issuance for <code>vps-control-mcp</code> installations (on your VPS, not on ours)</td>
-<td>U.S. / Germany</td>
-<td>Domain name, certificate requests — no personal data passes through ForgeRift in this flow</td>
+<td>Email address, license key, subscription plan, subscription status, Stripe Customer ID, Stripe Subscription ID, trial and grace-period timestamps</td>
+<td><a href="https://supabase.com/privacy">supabase.com/privacy</a></td>
 </tr>
 </tbody>
 </table>
 <p>International transfers rely on Standard Contractual Clauses (SCCs) or equivalent safeguards where applicable. We will update this list before adding a new sub-processor that materially expands processing of personal data.</p>
+<h3>5.1 Transit-only service providers</h3>
+<p>The following providers handle data in transit only and do not store personal data on ForgeRift's behalf:</p>
+<ul>
+<li><strong>Cloudflare, Inc.</strong> — Email routing. Inbound support emails are forwarded to ForgeRift's inbox via Cloudflare Email Workers. Cloudflare does not persistently store email content on ForgeRift's behalf. <a href="https://www.cloudflare.com/privacypolicy/">cloudflare.com/privacypolicy</a></li>
+</ul>
+<h3>5.2 Third-party platforms (not sub-processors)</h3>
+<p>The following platforms have an independent controller relationship with you. ForgeRift is not party to their processing and does not have a sub-processing agreement with them. You should review their privacy policies directly.</p>
+<ul>
+<li><strong>Anthropic PBC</strong> — the Claude AI platform that processes your conversation and invokes plugin tools. Conversation content (prompts, responses, and any command output Claude reads as part of its context) is processed directly between you and Anthropic under their terms; ForgeRift does not receive or store this data. If you supply an optional Anthropic API key, the command text and user-provided justification for every <code>run_command</code> invocation (not only AMBER-tier commands) are additionally sent to Anthropic's API on your behalf for AI-assisted safety classification before execution and are subject to Anthropic's data handling. <a href="https://www.anthropic.com/legal/privacy">Anthropic Privacy Policy</a></li>
+<li><strong>sslip.io</strong> — used in two distinct flows: (1) <strong>local-terminal-mcp only:</strong> ForgeRift's license validation endpoint is reached at <code>payments.forgerift.io</code> (a Cloudflare-proxied vanity hostname for ForgeRift's own payments service) (subscription records stored in Supabase on a DigitalOcean VPS). Your machine connects here at every startup to validate your license key; this is relevant to all local-terminal-mcp subscribers. (2) <strong>vps-control-mcp only:</strong> sslip.io provides DNS for TLS certificates on the VPS you operate yourself — this is not ForgeRift's infrastructure and is not relevant to local-terminal-mcp subscribers. sslip.io is a public DNS service that does not collect or process personal data beyond the DNS resolution request. <a href="https://sslip.io">sslip.io</a></li>
+<li><strong>Let's Encrypt / ISRG</strong> — used for TLS certificate issuance on <code>vps-control-mcp</code> installations on your own VPS (not relevant to local-terminal-mcp subscribers). Your domain name and certificate requests are processed by Let's Encrypt; no personal data passes through ForgeRift in this flow. <a href="https://letsencrypt.org/privacy/">Let's Encrypt Privacy Policy</a></li>
+</ul>
 <h2>6. Retention</h2>
 <p>The table below shows, for each data category, where the data actually lives, how long it is kept, and how you can get a copy or request deletion.</p>
 <table>
@@ -177,6 +190,24 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>Anthropic API key (optional)</td>
+<td>Claude Desktop local extension configuration (on your machine)</td>
+<td>As long as you keep it configured; never transmitted to ForgeRift; used locally by the plugin to authenticate AI-assisted safety classification requests to Anthropic's API for every <code>run_command</code> invocation (not only AMBER-tier commands)</td>
+<td>Remove via Settings → Extensions in Claude Desktop at any time.</td>
+</tr>
+<tr>
+<td>Audit logs (local-terminal-mcp / vps-control-mcp)</td>
+<td>Your local machine / VPS (not ForgeRift)</td>
+<td>Rotated at 10 MB (renamed to <code>audit.log.old</code>, overwriting prior backup); maximum ~20 MB on-disk at any time; user controls deletion</td>
+<td>Delete the <code>logs/</code> folder within the plugin's install directory at any time.</td>
+</tr>
+<tr>
+<td>License key validation logs</td>
+<td>Supabase, Inc. (ForgeRift-operated)</td>
+<td>Each record is deleted 90 days after it is created. Because the plugin validates at each startup, an active subscriber will typically have a rolling 90-day window of records on file at any given time — not a single 90-day deletion event.</td>
+<td>Request deletion via support@forgerift.io.</td>
+</tr>
 <tr>
 <td>Support email (inbound and our replies)</td>
 <td>Gmail (Google Workspace)</td>
@@ -192,14 +223,14 @@
 <tr>
 <td>Security reports (via email or GitHub)</td>
 <td>Gmail / GitHub</td>
-<td>Up to 5 years for audit and regulatory purposes</td>
+<td>Up to 5 years to defend against legal claims or as required by applicable law</td>
 <td>Contact support@forgerift.io or GitHub. Deletion may be limited where retention is required by law.</td>
 </tr>
 <tr>
 <td>Subscription and account records (email, plan, status)</td>
-<td>Stripe, Inc. + ForgeRift records</td>
+<td>Supabase, Inc. (ForgeRift-operated database) + Stripe, Inc.</td>
 <td>Until Subscription ends, then 7 years for tax/accounting compliance</td>
-<td>Request via support@forgerift.io. Stripe Customer Portal self-service once enabled.</td>
+<td>Request deletion via support@forgerift.io. Stripe Customer Portal for billing records.</td>
 </tr>
 <tr>
 <td>Billing and payment data (card brand, last four, invoices)</td>
@@ -219,6 +250,12 @@
 <td>Controlled by GitHub's standard logging policies</td>
 <td>Governed by GitHub's Privacy Statement; contact GitHub directly.</td>
 </tr>
+<tr>
+<td>Cookies on forgerift.io</td>
+<td>GitHub Pages (set by GitHub infrastructure, not ForgeRift)</td>
+<td>Per GitHub's cookie policy; ForgeRift sets no first-party cookies</td>
+<td>Manage via your browser settings; see <a href="/cookies.html">Cookie Policy</a> for details.</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Shutdown / service closure.</strong> If ForgeRift ceases operations, we will give at least 30 days' notice, delete or anonymize all personal data we directly hold within 90 days of closure, and assist subscribers in requesting deletion from Stripe and Resend as applicable.</p>
@@ -233,11 +270,13 @@
 <li>Withdraw consent at any time (where processing relies on consent),</li>
 <li>Not be subject to discrimination for exercising your rights (CCPA),</li>
 <li>Lodge a complaint with a supervisory authority (for EU/UK users — typically the authority in your country of residence).</li>
+<li>Appeal a denial of a privacy rights request (Virginia, Colorado, Connecticut, and other state residents where applicable law grants this right — email support@forgerift.io with subject "Privacy Rights Appeal").</li>
 </ul>
-<p>To exercise any of these rights, email <code>support@forgerift.io</code>. We aim to respond within thirty (30) days; GDPR allows one extension of up to sixty (60) days for complex requests.</p>
-<p><strong>Additional U.S. state privacy rights.</strong> Residents of states with comprehensive consumer privacy laws — including Virginia (VCDPA), Colorado (CPA), Connecticut (SB 6), Utah (UCPA), and Texas (TDPSA) — have similar rights to access, correct, delete, and obtain a portable copy of their personal data, and to opt out of certain processing. Virginia, Colorado, and Connecticut residents additionally have the right to appeal our response to a privacy rights request: if we deny your request, you may submit an appeal to support@forgerift.io with the subject line "Privacy Rights Appeal" and we will respond within the timeframe required by applicable law, along with a written explanation of our decision. If your appeal is denied, you may contact your state Attorney General.</p>
+<p>To exercise any of these rights, email <code>support@forgerift.io</code>. We will respond within thirty (30) days as required by GDPR Art. 12(3). The response period may be extended by up to sixty (60) additional days for complex or numerous requests, in which case we will inform you of the extension and the reasons within the first thirty (30) days.</p>
+<p><strong>Additional U.S. state privacy rights.</strong> Residents of states with comprehensive consumer privacy laws — including Virginia (VCDPA), Colorado (CPA), Connecticut (SB 6), Utah (UCPA), Texas (TDPSA), Oregon (OCPA), Montana (MCDPA), Tennessee (TIPA), Iowa (ICDPA), Indiana (INCDPA), and Delaware (DPDPA) — have similar rights to access, correct, delete, and obtain a portable copy of their personal data, and to opt out of certain processing. Many of these states additionally grant a right to appeal a denied privacy rights request: if we deny your request, you may submit an appeal to support@forgerift.io with the subject line "Privacy Rights Appeal" and we will respond within the timeframe required by applicable law, along with a written explanation of our decision. If your appeal is denied, you may contact your state Attorney General.</p>
+<p><strong>CCPA/CPRA categories collected in the preceding 12 months.</strong> As required under the California Consumer Privacy Act, the categories of personal information we have collected from California consumers in the preceding 12 months are: identifiers (email address, license key), commercial information (subscription plan, billing history), and internet or other electronic network activity (license validation timestamps, GitHub interaction data). We collect these solely for the purposes described in Sections 2 and 3 of this Policy. We do not sell or share these categories for cross-context behavioral advertising.</p>
 <p>We do not sell personal data, do not share it for cross-context behavioral advertising, and do not engage in automated decision-making that produces legal or similarly significant effects on you. The "do not sell or share" disclosure required under CCPA and equivalent state laws applies trivially here — there is nothing to opt out of.</p>
-<p>Business customers requiring a Data Processing Agreement may request one — see Section 5.2 of the Terms of Service at forgerift.io/terms.</p>
+<p>Business customers requiring a Data Processing Agreement may request one — see Section 5.2 of the <a href="/terms.html">Terms of Service</a>.</p>
 <h2>8. Children</h2>
 <p>The Services are not directed to children under 13, and we do not knowingly collect personal data from children under 13. If we learn we have collected such data, we will delete it promptly. Contact us at <code>support@forgerift.io</code> if you believe a child under 13 has provided us personal data.</p>
 <h2>9. Security</h2>
@@ -245,7 +284,7 @@
 <h2>10. International transfers</h2>
 <p>ForgeRift operates in the United States. If you are outside the U.S., your data may be transferred to and processed in the U.S. and other countries where our sub-processors operate. For transfers from the EEA, UK, or Switzerland, we rely on Standard Contractual Clauses or equivalent safeguards.</p>
 <h2>11. Accessibility</h2>
-<p>ForgeRift is committed to making forgerift.io reasonably accessible to people with disabilities. We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA on a best-effort basis. This is an ongoing effort — if you encounter an accessibility barrier on forgerift.io, please contact us at support@forgerift.io and we will work to address it. This commitment applies to the forgerift.io website; accessibility of third-party platforms (Anthropic Claude, GitHub, Stripe) is governed by those platforms' own policies.</p>
+<p>ForgeRift is committed to making forgerift.io reasonably accessible to people with disabilities. We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA on a best-effort basis. This is an ongoing effort — if you encounter an accessibility barrier on forgerift.io, please contact us at support@forgerift.io and we will work to address it. This commitment applies to the forgerift.io website; accessibility of third-party platforms listed in Section 5 is governed by those platforms' own policies.</p>
 <h2>12. Do Not Track</h2>
 <p>Our website does not respond to Do Not Track signals. We do not track you across sites for advertising purposes, so there is nothing meaningful to respond to.</p>
 <h2>13. Changes to this Policy</h2>
@@ -253,15 +292,15 @@
 <h2>14. Contact and complaints</h2>
 <p>For privacy questions, requests, or complaints, email <code>support@forgerift.io</code>.</p>
 <ul>
-<li><strong>EU / EEA users:</strong> you may also complain to your local data protection authority. A list is at https://edpb.europa.eu/about-edpb/about-edpb/members_en.</li>
-<li><strong>UK users:</strong> you may complain to the Information Commissioner's Office at https://ico.org.uk.</li>
+<li><strong>EU / EEA users:</strong> you may also complain to your local data protection authority. A list is at <a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en">edpb.europa.eu/about-edpb/about-edpb/members_en</a>.</li>
+<li><strong>UK users:</strong> you may complain to the Information Commissioner's Office at <a href="https://ico.org.uk">ico.org.uk</a>.</li>
 <li><strong>California users:</strong> you may contact the California Privacy Protection Agency or California Attorney General.</li>
 </ul>
-<p><strong>ForgeRift LLC</strong>
-5821 W Mineral St, West Allis, WI 53214, U.S.A.
-Email: support@forgerift.io
-Security: security@forgerift.io
-Website: https://forgerift.io</p>
+<p><strong>ForgeRift LLC</strong><br>
+5821 W Mineral St, West Allis, WI 53214, U.S.A.<br>
+Email: <a href="mailto:support@forgerift.io">support@forgerift.io</a><br>
+Security: <a href="mailto:security@forgerift.io">security@forgerift.io</a><br>
+Website: <a href="https://forgerift.io">https://forgerift.io</a></p>
 <hr />
 <p><em>End of Privacy Policy.</em></p>
   </div>
