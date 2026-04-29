@@ -198,7 +198,7 @@
     </div>
     <nav>
       <a href="#plugins">Plugins</a>
-<a href="#security">Security</a>
+      <a href="#security">Security</a>
       <a href="#pricing">Pricing</a>
       <a href="https://github.com/ForgeRift">GitHub</a>
     </nav>
@@ -210,11 +210,14 @@
 <div class="hero wrap">
   <h1>Give Claude a real terminal &mdash; without giving Claude the keys.</h1>
   <p class="sub">
-    We run the safe tasks automatically so you don't have to. Reading files, checking logs, running builds, deploying, diagnosing errors &mdash; Claude handles those directly, no copy-pasting required. High-risk operations stay permanently blocked and in your hands by design. Every call is checked against a three-tier security model, and every decision is logged.
+    Claude runs the safe tasks for you &mdash; you stay in control of the rest. Reading files, checking logs, running builds, deploying, diagnosing errors &mdash; Claude handles those directly, no copy-pasting required. High-risk operations stay permanently blocked and in your hands by design. Every call is checked against a three-tier security model, and every decision is logged.
   </p>
+  <div class="note" style="margin-bottom: 22px; max-width: 720px;">
+    <strong>Honest disclosure.</strong> These plugins significantly reduce &mdash; but do not eliminate &mdash; the need for manual terminal work. A defined set of high-risk operations (file deletion, firewall changes, package removal, credential access, and others) are permanently blocked and will always require you to run them yourself. When Claude hits one, it tells you exactly what to run and why. Additionally, LLMs follow instructions probabilistically: Claude may occasionally suggest &quot;paste this into your terminal&quot; even when the plugin is active. We treat every such instance as a defect and ship mitigations each release.
+  </div>
   <div class="badges">
     <span class="badge">Open source (MIT)</span>
-    <span class="badge">Audited &middot; 80+ adversarial scenarios tested</span>
+    <span class="badge">Multi-round adversarial review</span>
     <span class="badge green">GREEN allowlist</span>
     <span class="badge amber">AMBER dry-run gate</span>
     <span class="badge red">RED hard-block (140+ patterns, local-terminal)</span>
@@ -231,7 +234,7 @@
     <div class="grid-2">
 
       <div class="card">
-        <div class="platform">Windows 10 / 11 &middot; Claude Desktop + Cowork</div>
+        <div class="platform">Windows 10 / 11 &middot; Claude Desktop + Cowork <em>(Cowork mode is an optional Anthropic feature for autonomous multi-step tasks)</em></div>
         <h3>local-terminal</h3>
         <div class="kicker">Audited access to your local Windows machine. No network port &mdash; runs in-process via Claude Desktop.</div>
         <ul>
@@ -265,7 +268,7 @@
   <div class="wrap">
     <h2>How we keep Claude from doing the wrong thing</h2>
     <p style="color:var(--fg-muted); max-width: 720px;">
-      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. No shell is invoked. No single tool bypasses the check. Audit logs go to disk with token and secret redaction.
+      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. No shell is invoked. No single tool bypasses the check. Audit logs go to disk with token and secret redaction. When configured, the AI safety layer consumes Anthropic API tokens billed to your account.
     </p>
     <div class="tier-row" style="margin-top: 18px;">
       <div class="tier">
@@ -278,7 +281,7 @@
       </div>
       <div class="tier">
         <h4><span class="dot green"></span>GREEN &mdash; allowed &amp; logged</h4>
-        <p>Everything else. Rate-limited, timeout-capped, redacted audit log, and a hard cap on the escape-hatch tool. The boring tier by design.</p>
+        <p>Everything else. Timeout-capped per call, redacted audit log, and a dry-run-first gate on the escape-hatch tool. The boring tier by design.</p>
       </div>
     </div>
     <div class="note">
@@ -291,10 +294,10 @@
   <div class="wrap">
     <h2>Pricing</h2>
     <p style="color:var(--fg-muted); max-width: 720px;">
-      All plans include a <strong>14-day free trial</strong> &mdash; no charge during the trial period. No refunds after trial ends.
+      All plans include a <strong>14-day free trial</strong> &mdash; no charge during the trial period. Subscriptions are otherwise non-refundable except for confirmed ForgeRift billing errors, prorated convenience-termination refunds, and applicable statutory consumer rights &mdash; see <a href="/terms.html#section-6-5">Terms &sect;6.5</a>.
     </p>
     <p style="color:var(--fg-muted); max-width: 720px; margin-top: 8px;">
-      &#x26A0;&#xFE0F; <strong>Windows 10 / 11 only</strong> &mdash; these plugins run on Claude Desktop for Windows. macOS support is planned for a future release.
+      &#x26A0;&#xFE0F; <strong>local-terminal-mcp: Windows 10 / 11 only.</strong> vps-control-mcp is accessible from any OS that runs Claude Desktop. macOS support for local-terminal-mcp is planned for a future release.
     </p>
     <div class="pricing" style="margin-top: 20px;">
       <div class="price">
@@ -335,10 +338,10 @@
         <div class="amt">$9.99</div>
         <div class="per">per month &mdash; Individual &nbsp;/&nbsp; $14.99 &mdash; Bundle</div>
         <ul>
-          <li>Individual plugin &mdash; $9.99/mo locked for life</li>
-          <li>Bundle &mdash; $14.99/mo locked for life</li>
+          <li>Individual plugin &mdash; $9.99/mo rate-locked while subscription stays active</li>
+          <li>Bundle &mdash; $14.99/mo rate-locked while subscription stays active</li>
           <li>Monthly billing only &mdash; no annual option</li>
-          <li>First 100 subscribers or 3 months post-launch &mdash; whichever comes first</li>
+          <li>First 100 paid subscribers or 3 months after the marketplace listing date — whichever comes first</li>
         </ul>
         <div class="lock-warning">
           <strong>&#x1F512; Rate lock requires an active subscription.</strong> Canceling permanently forfeits your Founder price &mdash; it cannot be reclaimed after lapse.
@@ -351,30 +354,17 @@
       </div>
     </div>
     <div class="note">
-      Founder Cohort pricing is locked for the life of your subscription. Canceling permanently forfeits the Founder rate &mdash; reactivating after lapse restores access at the then-current price. See the <a href="/terms.html">Terms of Service</a> for full details.
+      Founder Cohort pricing is rate-locked while your subscription remains continuously active. Canceling permanently forfeits your Founder price — it cannot be reclaimed after lapse.
     </div>
   </div>
 </section>
-
 </main>
 
 <footer>
   <div class="wrap">
-    <div>
-      &copy; 2026 ForgeRift LLC &middot;
-      <a href="mailto:support@forgerift.io">support@forgerift.io</a>
-    </div>
-    <div>
-      <a href="https://github.com/ForgeRift">GitHub</a> &middot;
-      <a href="https://github.com/ForgeRift/local-terminal-mcp">local-terminal</a> &middot;
-      <a href="https://github.com/ForgeRift/vps-control-mcp">vps-control</a> &middot;
-      <a href="/terms.html">Terms</a> &middot;
-      <a href="/privacy.html">Privacy</a> &middot;
-      <a href="/cookies.html">Cookies</a> &middot;
-      <a href="https://billing.stripe.com/p/login/4gMdR91Sg5sgd1ybuE2Ry00">Manage subscription</a>
-    </div>
+    <div>&copy; 2026 ForgeRift LLC &middot; Wisconsin, USA &middot; <a href="mailto:support@forgerift.io">support@forgerift.io</a></div>
+    <div><a href="/terms.html">Terms of Service</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/cookies.html">Cookie Policy</a> &middot; <a href="https://github.com/ForgeRift">GitHub</a></div>
   </div>
 </footer>
-
 </body>
 </html>
