@@ -90,7 +90,7 @@ Every command Claude tries to run is classified before execution:
 
 - **RED** — Hard-blocked. Permanently denied with no override, no flag, no escape. Returns a structured error explaining the category and reason.
 - **AMBER** — Warning-required. The first call forces a dry run with a visible warning. A second explicit call is required to actually execute. Covers moderately risky but legitimate operations like bulk copies and wildcard renames.
-- **GREEN** — Allowed and logged. Subject to a 30-second hard timeout cap and full audit logging. The default tier for all structured tools and safe shell commands.
+- **GREEN** — Allowed and logged. Subject to a per-tool wall-clock timeout (30 seconds for `run_command` and `run_git_command`, 60 seconds for `run_npm_command`) and full audit logging. The default tier for all structured tools and safe shell commands.
 
 **Can Claude access my passwords or secret files?**  
 No. Sensitive file paths are blocked even from read-only tools. This includes .env files, SSH keys, .pem/.key/.pfx certificates, Windows credential stores, cloud credentials (.aws/, .gcloud/, .azure/), browser login data, kubeconfig, and more.
