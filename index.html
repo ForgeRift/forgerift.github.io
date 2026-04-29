@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ForgeRift &mdash; audited infrastructure tools for Claude</title>
-<meta name="description" content="Open-source MCP plugins that give Claude structured, audited access to your Windows machine and your Linux VPS. Three-tier security, no shells, every call logged.">
+<meta name="description" content="Open-source MCP plugins that give Claude structured, audited access to your Windows machine and your Linux VPS. Three-tier security, every command classified before execution, every call logged.">
 <meta name="theme-color" content="#0f1115">
 
 <meta property="og:title" content="ForgeRift &mdash; audited infrastructure tools for Claude">
@@ -268,7 +268,7 @@
   <div class="wrap">
     <h2>How we keep Claude from doing the wrong thing</h2>
     <p style="color:var(--fg-muted); max-width: 720px;">
-      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. No shell is invoked. No single tool bypasses the check. Audit logs go to disk with token and secret redaction. When configured, the AI safety layer consumes Anthropic API tokens billed to your account.
+      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. Structured tools never spawn a shell; the run_command escape hatch passes through cmd.exe only after RED + AMBER classification. No single tool bypasses the check. Audit logs go to disk with token and secret redaction. When configured, the AI safety layer consumes Anthropic API tokens billed to your account.
     </p>
     <div class="tier-row" style="margin-top: 18px;">
       <div class="tier">

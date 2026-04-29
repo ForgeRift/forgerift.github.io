@@ -2,7 +2,7 @@
 
 **For:** new users, support triage, and Anthropic marketplace reviewers  
 **Products covered:** local-terminal-mcp · vps-control-mcp  
-**Last updated:** 2026-04-28
+**Last updated:** 2026-04-29
 
 ---
 
