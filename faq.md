@@ -21,7 +21,7 @@ Yes. Both plugins are released under the MIT License. Source is available at git
 No. ForgeRift LLC is an independent third-party developer. We are not affiliated with, endorsed by, or sponsored by Anthropic PBC. The plugins extend Claude Desktop, which is an Anthropic product, but ForgeRift has no relationship with Anthropic beyond using their published platform.
 
 **Does ForgeRift work with Claude.ai (the web version)?**  
-No. Both plugins require Claude Desktop (Windows). The .mcpb extension format is a Claude Desktop feature. The web interface does not support MCP plugins.
+No. Both plugins require Claude Desktop. The .mcpb extension format is a Claude Desktop feature; the web interface does not support MCP plugins. (local-terminal-mcp is Windows-only; vps-control-mcp can be used from Claude Desktop on Windows or macOS.)
 
 ---
 
@@ -62,7 +62,7 @@ Open a new Claude Desktop conversation and ask: *"Can you list the files in my D
 Updates are managed through Claude Desktop's Extensions settings — no terminal commands needed. When a new version is released, you'll receive an email with the updated .mcpb file.
 
 **How do I uninstall?**  
-Go to **Settings → Extensions** in Claude Desktop and remove the extension. The plugin runs no Windows Service and installs no files outside the extension directory. The audit log (`logs/audit.log` and `logs/audit.log.old`) lives inside the extension's install directory and is removed when Claude Desktop deletes the extension on uninstall. If you copied the audit log elsewhere for your own records, delete that copy yourself.
+Go to **Settings → Extensions** in Claude Desktop and remove the extension. The plugin runs no Windows Service and installs no files outside the extension directory. The audit log (`logs/audit.log` and `logs/audit.log.old`) lives inside the extension's install directory. Claude Desktop may not delete the extension's install directory automatically on uninstall — to remove all traces, delete that directory manually after removing the extension. If you copied the audit log elsewhere for your own records, delete that copy yourself.
 
 ---
 
