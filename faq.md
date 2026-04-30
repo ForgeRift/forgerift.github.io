@@ -90,7 +90,7 @@ Every command Claude tries to run is classified before execution:
 
 - **RED** — Hard-blocked. Permanently denied with no override, no flag, no escape. Returns a structured error explaining the category and reason.
 - **AMBER** — Warning-required. `dry_run=true` is the default for `run_command`; an AMBER match fires a visible warning in the response. The recommended workflow is to preview first, confirm, then re-call with `dry_run=false` — though this is a workflow convention enforced by Claude's behavior, not a server-side gate. Covers moderately risky but legitimate operations like bulk copies and wildcard renames.
-- **Chaining:** `&&`, `||`, `;`, `&`, and pipe-to-shell are RED-blocked. Plain `|` piping (e.g. `dir | findstr error`) is **not** blocked — each segment is checked independently.
+- **Chaining:** `&&`, `||`, `;`, `&`, and pipe-to-shell are RED-blocked. Plain `|` piping (e.g. `dir | findstr error`) is **not** blocked — the full command string is checked as one unit, and plain `|` to non-shell targets is not in the block list.
 - **GREEN** — Allowed and logged. Subject to a per-tool wall-clock timeout (30 seconds for `run_command` and `run_git_command`, 60 seconds for `run_npm_command`) and full audit logging. The default tier for all structured tools and safe shell commands.
 
 **Can Claude access my passwords or secret files?**  
