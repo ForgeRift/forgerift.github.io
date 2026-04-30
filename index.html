@@ -219,7 +219,7 @@
     <span class="badge">Open source (MIT)</span>
     <span class="badge">Multi-round adversarial review</span>
     <span class="badge green">GREEN allowlist</span>
-    <span class="badge amber">AMBER dry-run gate</span>
+    <span class="badge amber">AMBER dry-run default</span>
     <span class="badge red">RED hard-block (140+ patterns, local-terminal)</span>
   </div>
   <div class="cta">
@@ -268,7 +268,7 @@
   <div class="wrap">
     <h2>How we keep Claude from doing the wrong thing</h2>
     <p style="color:var(--fg-muted); max-width: 720px;">
-      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. Structured tools execute fixed allowlisted operations (no user-provided command string reaches the security classifier); only the run_command escape hatch accepts arbitrary command text. The pipeline runs in order: static RED pattern checks first (140+ hard-coded regex patterns, instant rejection), then AMBER classification, then &mdash; if an Anthropic API key is configured &mdash; two parallel AI safety checks (Layer 2 + Layer 3). No single tool bypasses the check. Audit logs go to disk with token and secret redaction. <strong>Without an Anthropic API key</strong> (or if the API call fails), the AI classification layers are silently skipped and the plugin falls back to the static RED block list plus AMBER dry-run warnings only. Set <code>LAYER_STRICT_MODE=true</code> to block on API failure instead of skipping.
+      Every command Claude tries to run passes through a three-tier classifier before the plugin executes anything. Structured tools execute fixed allowlisted operations (no user-provided command string reaches the security classifier); only the run_command escape hatch accepts arbitrary command text. The pipeline runs in order: Layer 1 hard-block static patterns (HARD_BLOCKED_PATTERNS) reject instantly; then &mdash; if an Anthropic API key is configured &mdash; two parallel AI safety checks (Layer 2 + Layer 3); then the remaining RED static pattern checks (BLOCKED_PATTERNS, 140+ patterns total); then the AMBER warning classifier. No single tool bypasses the check. Audit logs go to disk with token and secret redaction. <strong>Without an Anthropic API key</strong> (or if the API call fails), the AI classification layers are silently skipped and the plugin falls back to the static RED block list plus AMBER dry-run warnings only. Set <code>LAYER_STRICT_MODE=true</code> to block on API failure instead of skipping.
     </p>
     <div class="tier-row" style="margin-top: 18px;">
       <div class="tier">
@@ -276,7 +276,7 @@
         <p>File deletion, shutdown, code exec via PowerShell/bash -c, curl/wget/scp/ssh, database writes, privilege escalation, Unicode homoglyphs, newline injection (each line is checked independently against the block list). No override, no flag, no escape for the hard-blocked categories.</p>
       </div>
       <div class="tier">
-        <h4><span class="dot amber"></span>AMBER &mdash; dry-run gate</h4>
+        <h4><span class="dot amber"></span>AMBER &mdash; dry-run default</h4>
         <p>Bulk copies, <code>find -exec</code>, <code>sed -i</code>, wildcard renames. <code>dry_run=true</code> is the default; an AMBER match fires a visible warning. Passing <code>dry_run=false</code> on the first call executes immediately — the recommended workflow is to preview first, then confirm.</p>
       </div>
       <div class="tier">
