@@ -74,7 +74,7 @@ Claude can list directories, read files, search file contents, run read-only git
 **What is Claude permanently blocked from doing?**  
 The following are hard-blocked and cannot be overridden by any instruction:
 - Deleting files or directories
-- Shutting down, rebooting, or suspending the system
+- Shutting down or rebooting the system (`shutdown`, `Restart-Computer`, `Stop-Computer`, `poweroff`, `halt`)
 - Installing or removing software packages
 - Making outbound network calls (curl, wget, ssh, scp, Invoke-WebRequest)
 - Accessing passwords, SSH keys, .env files, cloud credentials, or browser login data
