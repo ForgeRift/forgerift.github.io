@@ -1,0 +1,56 @@
+﻿legal: NF-S69-13 -- privacy + terms drift fixes, AS-IS strengthening, +tax, security.txt
+
+Pre-marketplace independent review of the live legal pages found
+two outdated security claims (same drift class as F008 and NF-S69-1),
+plus an opportunity to strengthen user-onus / AS-IS language to
+match the actual liability posture. Closes:
+
+PRIVACY
+- privacy.html section 2.1: was 'license key transmitted as URL
+  query parameter (?token=...)'. Reality since v1.13.0 is POST + JSON
+  body with a hashed machine ID. Updated. Removed 'plan to migrate
+  to Authorization: Bearer in a future release' (already migrated --
+  the replacement is POST body, not Bearer).
+- privacy.html section 5.1: was 'Cloudflare observes the request URL
+  including the ?token= query parameter'. Cloudflare does not see
+  query-string license keys because they're now in the POST body.
+  Updated.
+- privacy.html section 2.1.1 (NEW): explicitly documents that VPS
+  validation differs from LT (per-request Supabase customers-table
+  lookup, no machine fingerprint, no per-machine activation cap;
+  parity is on the post-marketplace roadmap). Mirrors the WHITEPAPER
+  fix from NF-S69-1.
+
+TERMS
+- terms.html Schedule B.2: was 'License key validation operates the
+  same as local-terminal-mcp -- your license key is sent to ForgeRift's
+  subscription service at startup'. VPS does NOT validate at startup;
+  it validates per-request. Same drift class as the WHITEPAPER fix
+  shipped earlier today (NF-S69-1). Now matches reality.
+- terms.html section 8.A (NEW): explicit 8-point user-acknowledgment
+  block stating that ForgeRift does not control Claude or Cowork,
+  that the user is responsible for what they authorize, scope they
+  configure, supervision, secrets they paste, and Anthropic policy
+  compliance. Survives Term updates per Section 15. Strengthens the
+  AS-IS posture without limiting mandatory consumer-protection rights.
+- terms.html section 6.3: trial conversion clauses rewritten with
+  a prominent red-bordered warning paragraph -- explicit 'cancel
+  before day 14 or your card will be charged on day 15' wording,
+  no-refunds-after-trial, point-of-purchase acknowledgment via
+  Stripe checkout '14-day free trial, then /month' UI.
+
+INDEX
+- index.html: small '+ tax where applicable' notation under each
+  pricing card (3 cards: Individual, Bundle, Founder). Stripe Tax
+  is now enabled at the Payment Link level; the disclosure matches.
+
+SECURITY.TXT
+- /.well-known/security.txt + /security.txt (per RFC 9116) added
+  with mailto:security@forgerift.io plus per-repo GitHub security
+  advisory URLs and 1-year Expires.
+- _config.yml created to include .well-known under Jekyll (default
+  Jekyll excludes dotfile directories from GitHub Pages output).
+
+DATES
+- 'Last updated' bumped from 2026-04-29 to 2026-05-04 on both
+  privacy.html and terms.html.

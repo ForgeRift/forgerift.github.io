@@ -1,0 +1,11 @@
+# RFC 9116 vulnerability disclosure file for forgerift.io
+# https://forgerift.io/.well-known/security.txt
+
+Contact: mailto:security@forgerift.io
+Contact: https://github.com/ForgeRift/local-terminal-mcp/security/advisories/new
+Contact: https://github.com/ForgeRift/vps-control-mcp/security/advisories/new
+Expires: 2027-05-04T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://forgerift.io/.well-known/security.txt
+Policy: https://github.com/ForgeRift/local-terminal-mcp/blob/main/SECURITY.md
+Acknowledgments: https://github.com/ForgeRift/local-terminal-mcp/blob/main/CREDITS.md

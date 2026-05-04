@@ -1,0 +1,3 @@
+﻿# Allow Jekyll to publish dotfile directories like .well-known
+include:
+  - .well-known
