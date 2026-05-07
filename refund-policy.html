@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Refund and Cancellation Policy &mdash; ForgeRift</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314b8a6'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui,sans-serif' font-weight='700' font-size='28' fill='%230f1115'%3EFR%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#0f1115;--bg-2:#151922;--fg:#e8ecf3;--fg-muted:#9aa3b2;--accent:#14b8a6;--border:#262b36;}
+*{box-sizing:border-box;}html,body{margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.7;-webkit-font-smoothing:antialiased;}
+a{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px;}
+header{border-bottom:1px solid var(--border);padding:20px 0;}
+header .wrap{display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:12px;font-weight:700;color:var(--fg);font-size:1.1rem;text-decoration:none;}
+.brand-mark{width:32px;height:32px;border-radius:8px;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-size:0.85rem;}
+nav a{color:var(--fg-muted);margin-left:20px;font-size:0.95rem;}nav a:hover{color:var(--fg);}
+.content{padding:48px 0 80px;}
+h1{font-size:2rem;letter-spacing:-0.02em;margin:0 0 8px;}
+.meta{color:var(--fg-muted);font-size:0.9rem;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+h2{font-size:1.35rem;margin:36px 0 12px;letter-spacing:-0.01em;}
+h3{font-size:1.1rem;margin:24px 0 10px;}
+p{margin:0 0 14px;}
+blockquote{border-left:3px solid var(--accent);margin:16px 0;padding:12px 18px;background:var(--bg-2);border-radius:4px;color:var(--fg-muted);}
+blockquote p{margin:0;}
+code{background:var(--bg-2);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-size:0.88em;font-family:'SF Mono','Fira Code',monospace;}
+ul,ol{margin:0 0 14px;padding-left:22px;}li{margin-bottom:4px;color:var(--fg-muted);}li strong{color:var(--fg);}
+hr{border:none;border-top:1px solid var(--border);margin:32px 0;}
+footer{border-top:1px solid var(--border);padding:32px 0;color:var(--fg-muted);font-size:0.88rem;}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;}
+footer a{color:var(--fg-muted);}footer a:hover{color:var(--fg);}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="/"><span class="brand-mark">FR</span>ForgeRift</a>
+    <nav>
+      <a href="/#plugins">Plugins</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="https://github.com/ForgeRift">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="content wrap">
+
+<h1>Refund and Cancellation Policy</h1>
+<div class="meta">Effective date: 2026-05-04 &middot; Last updated: 2026-05-06 &middot; Provider: ForgeRift LLC, a Wisconsin limited liability company &middot; <a href="mailto:support@forgerift.io">support@forgerift.io</a></div>
+
+<p><strong>Scope.</strong> This policy applies to paid subscriptions for any ForgeRift product, including (a) <code>local-terminal-mcp</code> (&ldquo;LT&rdquo;) and <code>vps-control-mcp</code> (&ldquo;VPS&rdquo;) (collectively, the &ldquo;MCP Products&rdquo;), and (b) the LapseIQ self-hosted contract-renewal management product, including any commercial tier offered via <code>lapseiq.com</code> (&ldquo;LapseIQ&rdquo;).</p>
+
+<p>This policy supplements (and is incorporated into) the End-User License Agreement applicable to each product and the Terms of Service applicable to ForgeRift-operated services. In the event of conflict, the EULA controls on liability and the more-specific provision controls on the cancellation mechanics.</p>
+
+<hr/>
+
+<h2>1. The short version</h2>
+
+<ul>
+<li>You can cancel any time through the cancellation link in your subscription email or via the Stripe customer portal. Cancellation takes effect at the end of the current paid period; you keep access until that date.</li>
+<li>We don&rsquo;t pro-rate refunds for unused time on a paid period you&rsquo;ve already paid for. Once you&rsquo;ve started a billing period, the period is charged in full.</li>
+<li>Free trials end automatically when the trial period expires; if you cancel during the trial, you are not charged.</li>
+<li>We will refund a charge that&rsquo;s clearly our error &mdash; duplicate billing, billing after a confirmed cancellation, or a billing error caused by a defect in our systems &mdash; without quibbling.</li>
+<li>Statutory consumer rights (EU/UK 14-day cooling-off, applicable US state-law cancellation rights, etc.) override anything in this policy that would limit them. If your jurisdiction gives you a stronger refund right, that right applies.</li>
+</ul>
+
+<h2>2. Subscription model</h2>
+
+<p>ForgeRift sells access to the MCP Products and LapseIQ as <strong>monthly or annual subscriptions</strong> through Stripe Payment Links, with a fixed price set out in the marketplace listing or product pricing page at the time of purchase. The current marketing prices for each product are documented in the corresponding product&rsquo;s <code>MARKETPLACE_LISTING.md</code> (for the MCP Products) or on <code>lapseiq.com/pricing</code> (for LapseIQ). Founder-cohort discount tiers, where offered, are limited in number and time-limited; once filled or sunset, the regular pricing applies.</p>
+
+<p>A paid subscription gives you (a) a license key (LT) or bearer token (VPS, and LapseIQ commercial tiers when applicable) entitling you to use the product per the applicable EULA, and (b) access to product updates released during the subscription period.</p>
+
+<p>A &ldquo;billing period&rdquo; is one month (for monthly subscriptions) or one year (for annual subscriptions), charged in advance.</p>
+
+<h2>3. Free trials</h2>
+
+<p>Where ForgeRift offers a free trial of a paid product (currently a 14-day free trial on the MCP Products), the trial:</p>
+
+<ul>
+<li>starts on the date you initially activate the product with the trial entitlement;</li>
+<li>runs for the period stated in the product listing at the time of activation;</li>
+<li>automatically converts to a paid subscription at the end of the trial unless you cancel before the trial ends;</li>
+<li>charges your payment method automatically on the conversion date for the first paid billing period; and</li>
+<li>is available <strong>once per customer per product</strong> &mdash; repeat trials of the same product by the same customer (whether by the same email address, the same payment method, the same machine fingerprint, or any other identifier) are not offered.</li>
+</ul>
+
+<p>If you cancel during the trial, you will not be charged. You can cancel during the trial through the Stripe customer portal or by emailing <code>support@forgerift.io</code> (for MCP Products) or <code>support@lapseiq.com</code> (for LapseIQ) before the trial conversion date.</p>
+
+<h2>4. Cancellation</h2>
+
+<p>You may cancel a subscription at any time. Cancellation takes effect <strong>at the end of the current billing period</strong>: you continue to have access to the product through the end of the period you&rsquo;ve already paid for; the subscription does not auto-renew for the next billing period.</p>
+
+<p>Cancellation is available:</p>
+
+<ul>
+<li>(a) through the cancellation link in any subscription-related email Stripe sends you;</li>
+<li>(b) through the Stripe customer portal (a link is provided in your purchase-confirmation email and can be regenerated by emailing <code>support@forgerift.io</code> or <code>support@lapseiq.com</code>); or</li>
+<li>(c) by emailing <code>support@forgerift.io</code> (for MCP Products) or <code>support@lapseiq.com</code> (for LapseIQ) from the email address associated with the subscription.</li>
+</ul>
+
+<p>We will confirm the cancellation by email within 5 business days. If you do not receive a confirmation, please reply to the original confirmation email or open a new support thread.</p>
+
+<p><strong>Annual subscriptions cancelled mid-year.</strong> An annual subscription cancelled before the end of the year remains active for the remainder of the year you have already paid for, then ends. We do not pro-rate refunds for the unused portion of an annual subscription, except as described in Section 6 (Convenience refunds for annual subscriptions).</p>
+
+<h2>5. Refunds for ForgeRift errors</h2>
+
+<p>We will issue a full refund, without quibbling, for any of the following:</p>
+
+<ul>
+<li>(a) <strong>Duplicate billing.</strong> If you were charged twice for the same billing period due to a system or processor error, we will refund the duplicate.</li>
+<li>(b) <strong>Billing after a confirmed cancellation.</strong> If you cancelled before the end of a billing period and Stripe nevertheless charged your payment method for the next period, we will refund the erroneous charge.</li>
+<li>(c) <strong>Billing for an inaccessible product.</strong> If a defect on ForgeRift&rsquo;s side prevented you from using the product for a substantial portion of a billing period, and we could not resolve the defect within a reasonable time after you reported it, we will refund the affected period (or pro-rate the refund where the defect was partial).</li>
+<li>(d) <strong>Material misrepresentation in the product listing.</strong> If a feature was prominently advertised in the product listing at the time of your purchase and is not present in the version you received, you may request a refund of the most recent billing period within 30 days of purchase.</li>
+</ul>
+
+<p>To request a refund under this Section 5, email the relevant support address with <code>[REFUND REQUEST]</code> in the subject line, the email address associated with the subscription, and a brief description of the error. We will respond within 5 business days.</p>
+
+<h2>6. Convenience refunds for annual subscriptions</h2>
+
+<p>For an annual subscription cancelled before the end of the year, we offer a <strong>convenience refund</strong> equal to the unused portion of the year, calculated on a pro-rated basis from the cancellation date, <strong>less a USD $25 administrative fee</strong>. To request a convenience refund, email the relevant support address with <code>[CONVENIENCE REFUND]</code> in the subject line within 30 days of cancellation. Convenience refunds are not available for monthly subscriptions, for subscriptions terminated by ForgeRift for breach, or for any subscription where ForgeRift has reasonable grounds to suspect license-sharing or other circumvention of technical controls under the applicable EULA.</p>
+
+<h2>7. Termination by ForgeRift</h2>
+
+<p>ForgeRift may terminate a subscription, deactivate a license key or bearer token, or suspend a machine activation:</p>
+
+<ul>
+<li>(a) for non-payment, after the grace period applicable to the payment processor;</li>
+<li>(b) for material breach of the applicable EULA, Terms of Service, or Acceptable Use Policy;</li>
+<li>(c) where ForgeRift&rsquo;s automated sharing-detection systems identify license-sharing patterns inconsistent with the activation cap or per-token entitlement (license-sharing is described in the EULA Section 8 for the MCP Products);</li>
+<li>(d) where required by law or by a binding order from a competent authority;</li>
+<li>(e) where ForgeRift discontinues the product (per the EULA&rsquo;s discontinuation-notice clause); or</li>
+<li>(f) where ForgeRift in good faith concludes that continued provision presents a security, fraud, or compliance risk it cannot reasonably mitigate.</li>
+</ul>
+
+<p>Termination by ForgeRift for cause (subsections (a), (b), (c), or (f)) does not entitle you to a refund of any pre-paid amount, except for unaccrued amounts where applicable law requires otherwise. Termination by ForgeRift for convenience (subsection (e), discontinuation) does entitle you to a pro-rated refund of any pre-paid amount for the unused portion of the subscription period, without the $25 administrative fee referenced in Section 6.</p>
+
+<h2>8. Statutory consumer rights</h2>
+
+<p>This policy does not limit any non-waivable consumer-protection rights you may have under applicable law. In particular:</p>
+
+<ul>
+<li><strong>EU / UK / EEA consumers.</strong> If you are a consumer in the EU, UK, or EEA, you may have a 14-day right of withdrawal under EU Directive 2011/83/EU (or the UK equivalent) for distance purchases, subject to the digital-content carve-outs that apply once you&rsquo;ve started downloading or using the product. To exercise the right of withdrawal, email the relevant support address within 14 days of purchase with <code>[WITHDRAWAL]</code> in the subject line.</li>
+<li><strong>California / certain US states.</strong> If you are a consumer in a US state with statutory cancellation rights for digital subscriptions (e.g., California&rsquo;s automatic-renewal statute), you may exercise those rights through the cancellation methods in Section 4. Where the statute requires a specific cancellation mechanism (such as a one-click cancellation link), we will provide it as required.</li>
+<li><strong>Other jurisdictions.</strong> Where local consumer-protection law gives you a refund or cancellation right that this policy would limit, the local-law right prevails.</li>
+</ul>
+
+<h2>9. Chargebacks</h2>
+
+<p>If you dispute a charge directly with your bank or card issuer (a &ldquo;chargeback&rdquo;) rather than contacting ForgeRift first, we may suspend the affected subscription, license key, or bearer token pending resolution of the dispute. We strongly prefer that you email the relevant support address first; in our experience, almost every billing error can be resolved quickly without involving the card network. Initiating a chargeback for a charge you do not dispute, or after we have already issued a refund, may be considered fraud under the EULA and may result in account termination.</p>
+
+<h2>10. Changes to this policy</h2>
+
+<p>We may update this policy from time to time. When we make material changes, we will update the Effective Date and provide reasonable notice. Continued use of any ForgeRift product after the new Effective Date constitutes acceptance of the updated policy. We will not retroactively reduce refund rights you had at the time of your last paid renewal.</p>
+
+<h2>11. Contact</h2>
+
+<ul>
+<li>Refund / cancellation questions for <strong>MCP Products</strong> (<code>local-terminal-mcp</code>, <code>vps-control-mcp</code>): <a href="mailto:support@forgerift.io">support@forgerift.io</a>.</li>
+<li>Refund / cancellation questions for <strong>LapseIQ</strong> (paid tiers): <a href="mailto:support@lapseiq.com">support@lapseiq.com</a>.</li>
+<li>Stripe-side billing portal: link in your purchase-confirmation email; if you can&rsquo;t find it, email the relevant support address and we&rsquo;ll send a fresh link.</li>
+</ul>
+
+<hr/>
+
+<p><em>End of Refund and Cancellation Policy.</em></p>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>&copy; 2026 ForgeRift LLC &middot; Wisconsin, USA &middot; <a href="mailto:support@forgerift.io">support@forgerift.io</a></div>
+    <div><a href="/terms.html">Terms of Service</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/refund-policy.html">Refund Policy</a> &middot; <a href="/cookies.html">Cookie Policy</a> &middot; <a href="https://github.com/ForgeRift">GitHub</a></div>
+  </div>
+</footer>
+</body>
+</html>
